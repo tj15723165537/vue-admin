@@ -1,0 +1,68 @@
+<template>
+  <div id="first" v-bind="props"></div>
+</template>
+<script lang="ts" setup>
+import * as echarts from 'echarts'
+import type { EChartsType } from 'echarts'
+import { nextTick, onBeforeUnmount } from 'vue'
+
+let myChart: EChartsType | null = null
+const props = {
+  style: {
+    height: '50%'
+  }
+}
+nextTick(() => {
+  myChart = echarts.init(document.getElementById('first') as HTMLElement)
+  var option
+  const data: any[] = []
+  for (let i = 0; i <= 360; i++) {
+    let t = (i / 180) * Math.PI
+    let r = Math.sin(2 * t) * Math.cos(2 * t)
+    data.push([r, i])
+  }
+  option = {
+    legend: {
+      data: ['line'],
+      left: '10%'
+    },
+    polar: {
+      center: ['50%', '54%']
+    },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross'
+      }
+    },
+    angleAxis: {
+      type: 'value',
+      startAngle: 0
+    },
+    radiusAxis: {
+      min: 0
+    },
+    series: [
+      {
+        coordinateSystem: 'polar',
+        name: 'line',
+        type: 'line',
+        showSymbol: false,
+        data: data
+      }
+    ],
+    animationDuration: 2000
+  }
+  option && myChart.setOption(option)
+  window.addEventListener('resize', () => {
+    myChart?.resize()
+  })
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', () => {
+    myChart?.resize()
+  })
+})
+</script>
+<style scoped></style>

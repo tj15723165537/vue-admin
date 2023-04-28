@@ -1,0 +1,49 @@
+@import './theme.scss';
+
+.el-aside {
+  height: 100vh;
+  background-color: $bg_sidebar;
+  color: $color_sidebar;
+}
+
+.el-header {
+  background: $bg_navbar;
+  color: $color_navbar;
+  height: 60px;
+}
+
+.el-main {
+  background: #f0f2f5;
+  height: calc(100vh - 60px);
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.el-aside .sidebar .title {
+  background-color: $bg_sidebar !important;
+}
+
+.el-menu {
+  background-color: $bg_sidebar;
+  border-right: none;
+}
+
+.el-sub-menu__title {
+  color: $color_sidebar;
+}
+
+.el-menu-item {
+  color: $color_sidebar;
+}
+
+.el-menu-item.is-active {
+  color: $color_sidebar_active;
+  background-color: $bg_sidebar_active !important;
+}
+
+.el-menu-item:hover,
+.el-sub-menu__title:hover {
+  color: $color_sidebar_hover;
+  background-color: $bg_sidebar_hover;
+}

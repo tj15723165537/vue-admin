@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.serve.mapper.system.UserMapper">
+    <select id="getPage" resultType="com.example.serve.entity.system.User">
+            select a.account,a.password,a.id,a.status,a.create_time,a.update_time from user as a limit #{params.page},#{params.size}
+    </select>
+    <select id="getTotal" resultType="Integer">
+        select count(*) from user
+    </select>
+    <insert id="add">
+        insert into user(account,password,status,create_time,update_time) values (#{params.account},#{params.password},#{params.status},now(),now())
+    </insert>
+    <select id="getById" resultType="com.example.serve.entity.system.User">
+        select account,password,id,status,create_time,update_time from user where id = #{id}
+    </select>
+    <update id="update">
+        update user set account = #{params.account}, password = #{params.password},status = #{params.status},update_time = now() where id = #{params.id}
+    </update>
+    <delete id="delete">
+        delete from user where id = #{id}
+    </delete>
+</mapper>
