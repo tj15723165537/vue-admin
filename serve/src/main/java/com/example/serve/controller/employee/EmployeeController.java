@@ -6,6 +6,7 @@ import com.example.serve.dto.employee.EmployeeDTO;
 import com.example.serve.dto.employee.EmployeePageParamsDTO;
 import com.example.serve.entity.employee.Employee;
 import com.example.serve.service.employee.EmployeeService;
+import com.example.serve.utils.PageList;
 import com.example.serve.utils.Response;
 import com.example.serve.vo.employee.EmployeeVO;
 import io.swagger.annotations.Api;
@@ -38,7 +39,7 @@ public class EmployeeController {
             @ApiImplicitParam(name = "address", value = "地址", required = false, dataTypeClass = String.class)
     })
     @GetMapping("/list")
-    public Response<EmployeeVO> list(EmployeePageParamsDTO filter) {
+    public Response<PageList<EmployeeVO>> list(EmployeePageParamsDTO filter) {
         IPage<Employee> ipage = employeeService.getList(filter);
         List<EmployeeVO> employeeVOList = employeeConvert.entitylist2Volist(ipage.getRecords());
         return Response.ok(employeeVOList, ipage.getTotal());

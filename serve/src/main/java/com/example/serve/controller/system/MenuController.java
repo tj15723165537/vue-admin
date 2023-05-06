@@ -23,7 +23,7 @@ public class MenuController {
 
     @GetMapping("/list")
     @ApiModelProperty("获取菜单列表")
-    public Response<MenuVO> getList(){
+    public Response<MenuVO[]> getList(){
         List<MenuVO> list = menuService.getList();
         return Response.ok(list);
     }

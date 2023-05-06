@@ -9,13 +9,11 @@ import com.example.serve.exception.BusinessException;
 import com.example.serve.mapper.auth.LoginMapper;
 import com.example.serve.service.auth.LoginService;
 import com.example.serve.utils.JwtUtil;
+import com.example.serve.vo.auth.LoginVO;
 import com.example.serve.vo.system.UserVO;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class LoginServiceImpl extends ServiceImpl<LoginMapper, User> implements LoginService {
@@ -24,7 +22,7 @@ public class LoginServiceImpl extends ServiceImpl<LoginMapper, User> implements 
     private UserConvert userConvert;
 
     @Override
-    public Map<String, Object> login(LoginDTO dto) {
+    public LoginVO login(LoginDTO dto) {
 
         LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(User::getAccount, dto.getAccount());
@@ -46,10 +44,10 @@ public class LoginServiceImpl extends ServiceImpl<LoginMapper, User> implements 
         UserVO userVO = userConvert.entity2Vo(user);
         String token = JwtUtil.sign(String.valueOf(user.getId()), user.getAccount(), user.getPassword());
 
-        Map<String, Object> data = new HashMap<String, Object>();
-        data.put("token", token);
-        data.put("userInfo", userVO);
+        LoginVO loginVO = new LoginVO();
+        loginVO.setToken(token);
+        loginVO.setUserInfo(userVO);
 
-        return data;
+        return loginVO;
     }
 }

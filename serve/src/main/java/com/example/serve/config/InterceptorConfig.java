@@ -42,13 +42,12 @@ public class InterceptorConfig implements WebMvcConfigurer {
         @Autowired
         UserService userService;
 
-
         @Override
         public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
             String url = httpServletRequest.getRequestURI();
-            String[] whiteList = {"/login"};
+            String[] whiteList = {"/login", "/swagger-resources", "/webjars", "/v2/api-docs", "/v3/api-docs", "/swagger-ui.html", "/doc.html", "/error"};
             for (String s : whiteList) {
-                if (url.contains(s)) {
+                if (url.startsWith(s)) {
                     return true;
                 }
             }

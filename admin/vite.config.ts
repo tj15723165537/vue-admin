@@ -5,7 +5,7 @@ const path = require('path')
 
 
 export default defineConfig(({mode}) => {
-    const {VITE_BASE_API_NODE, VITE_BASE_API_JAVA} = loadEnv(mode, process.cwd());
+    const {VITE_BASE_API} = loadEnv(mode, process.cwd());
     return {
         plugins: [vue()],
         define: {
@@ -22,14 +22,9 @@ export default defineConfig(({mode}) => {
             port: 4396,
             proxy: {
                 '/api': {
-                    target: VITE_BASE_API_JAVA,
+                    target: VITE_BASE_API,
                     changeOrigin: true,
                     rewrite: (path) => path.replace(/^\/api/, '')
-                },
-                '/foo': {
-                    target: VITE_BASE_API_NODE,
-                    changeOrigin: true,
-                    rewrite: (path) => path.replace(/^\/foo/, '')
                 }
             }
         }

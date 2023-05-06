@@ -3,6 +3,7 @@ package com.example.serve.controller.auth;
 import com.example.serve.dto.auth.LoginDTO;
 import com.example.serve.service.auth.LoginService;
 import com.example.serve.utils.Response;
+import com.example.serve.vo.auth.LoginVO;
 import com.example.serve.vo.system.UserVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -28,8 +29,8 @@ public class LoginController {
             @ApiImplicitParam(name = "account", value = "账号", required = true, dataTypeClass = String.class),
             @ApiImplicitParam(name = "password", value = "密码", required = true, dataTypeClass = String.class)
     })
-    public Response<UserVO> login(@RequestBody LoginDTO dto){
-        Map<String,Object> data = loginService.login(dto);
+    public Response<LoginVO> login(@RequestBody LoginDTO dto){
+        LoginVO data = loginService.login(dto);
         return Response.ok(data);
     }
 }

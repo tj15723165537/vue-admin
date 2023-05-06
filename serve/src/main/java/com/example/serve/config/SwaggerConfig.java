@@ -18,7 +18,7 @@ public class SwaggerConfig {
 
     @Bean
     public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
+        return new Docket(DocumentationType.OAS_30)
                 .enable(true)
                 .apiInfo(apiInfo())
                 .select()
@@ -26,13 +26,13 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
                 .build()
-                .groupName("all");
+                .groupName("默认");
     }
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .description("接口文档")
                 .title("接口文档")
-                .version("0.0.1-SNAPSHOT")
+                .version("1.0.0")
                 .build();
     }
 }
