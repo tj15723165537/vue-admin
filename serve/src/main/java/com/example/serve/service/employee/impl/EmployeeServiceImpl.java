@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.serve.convert.employee.EmployeeConvert;
-import com.example.serve.dto.employee.EmployeeDTO;
-import com.example.serve.dto.employee.EmployeePageParamsDTO;
+import com.example.serve.dto.employee.EmployeeForm;
+import com.example.serve.dto.employee.EmployeeSearchDTO;
 import com.example.serve.entity.employee.Employee;
 import com.example.serve.mapper.employee.EmployeeMapper;
 import com.example.serve.service.employee.EmployeeService;
@@ -23,7 +23,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
     @Autowired
     private EmployeeConvert employeeConvert;
 
-    public IPage<Employee> getList(EmployeePageParamsDTO params) {
+    public IPage<Employee> getList(EmployeeSearchDTO params) {
         LambdaQueryWrapper<Employee> queryWrapper = new LambdaQueryWrapper<>();
         if (params.getName() != null) {
             queryWrapper.like(Employee::getName, params.getName());
@@ -39,7 +39,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
     }
 
     //添加员工
-    public Boolean add(EmployeeDTO dto) {
+    public Boolean add(EmployeeForm dto) {
         Employee employee = employeeConvert.dto2Entity(dto);
         Boolean result = this.save(employee);
         return result;
@@ -59,7 +59,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
     }
 
     // 修改员工
-    public Boolean update(EmployeeDTO dto) {
+    public Boolean update(EmployeeForm dto) {
         Employee employee = employeeConvert.dto2Entity(dto);
         Boolean result = this.updateById(employee);
         return result;

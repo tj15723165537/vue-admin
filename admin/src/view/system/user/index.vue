@@ -63,8 +63,8 @@ import {addUser, delUser, editUser, getUserDetail, getUserList, updateUserStatus
 import {onMounted, reactive, ref, watch} from 'vue'
 import {Crud} from '@/hooks/crud'
 import {ElMessage} from 'element-plus/es'
-
-const listQuery: UserPageParams = {
+import {UserSearch,User} from '@/types/system/user'
+const listQuery: UserSearch = {
     account: undefined,
     status: undefined,
     page: 1,

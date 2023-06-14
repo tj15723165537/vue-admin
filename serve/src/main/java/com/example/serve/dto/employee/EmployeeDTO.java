@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
 import java.util.Date;
 @Data
-public class EmployeeDTO {
+public class EmployeeForm {
 
     @ApiModelProperty(value = "员工id")
     private Long id;

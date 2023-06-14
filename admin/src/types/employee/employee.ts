@@ -1,4 +1,4 @@
-interface Employee {
+export interface Employee {
     id: string | number
     name: string
     phone: string
@@ -6,13 +6,13 @@ interface Employee {
     address: string
 }
 
-interface EmployeePageParams extends PageParams {
+export interface EmployeeSearch extends PageParams {
     name?: string
     phone?: string
     address?: string
 }
 
-interface EmployeeCU {
+export interface EmployeeForm {
     id?: string | number | null
     name: string
     phone: string

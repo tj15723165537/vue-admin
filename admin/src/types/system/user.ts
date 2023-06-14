@@ -1,4 +1,4 @@
-interface User {
+export interface User {
     id: number | string
     account: string
     password: string
@@ -7,7 +7,7 @@ interface User {
     updateAt: Date
 }
 
-interface UserPageParams extends PageParams {
+export interface UserSearch extends PageParams {
     account?: string
     status?: 0 | 1
 }

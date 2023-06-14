@@ -1,13 +1,15 @@
+import { Employee, EmployeeForm } from '@/types/employee/employee'
+import { UserSearch } from '@/types/system/user'
 import requset from '@/utils/request'
 
-export const getEmployeeList = (data: UserPageParams) => {
+export const getEmployeeList = (data: UserSearch) => {
   return requset<ResultData<Employee>>({
     url: '/api/employee/list',
     data
   })
 }
 
-export const addEmployee = (data: EmployeeCU) => {
+export const addEmployee = (data: EmployeeForm) => {
   return requset({
     url: '/api/employee/add',
     method: 'post',
@@ -15,7 +17,7 @@ export const addEmployee = (data: EmployeeCU) => {
   })
 }
 
-export const editEmployee = (data: EmployeeCU) => {
+export const editEmployee = (data: EmployeeForm) => {
   return requset({
     url: '/api/employee/update',
     method: 'post',

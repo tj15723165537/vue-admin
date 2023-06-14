@@ -38,8 +38,8 @@ import {delEmployee, getEmployeeList} from '@/api/employee/index'
 import {onMounted, reactive, ref} from 'vue'
 import addEdit from './components/add_edit.vue'
 import {ElMessageBox, ElMessage} from 'element-plus'
-
-let searchState = reactive<EmployeePageParams>({
+import {EmployeeSearch, Employee} from '@/types/employee/employee'
+let searchState = reactive<EmployeeSearch>({
     page: 1,
     size: 10,
     name: '',
@@ -75,7 +75,7 @@ const getList = async () => {
     total.value = result.data!.total!
 }
 const reset = () => {
-    let i: keyof EmployeePageParams
+    let i: keyof EmployeeSearch
     for (i in searchState) {
         if (i !== 'page' && i !== 'size') searchState[i] = ''
     }

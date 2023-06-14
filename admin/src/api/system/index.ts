@@ -1,6 +1,7 @@
 import requset from '@/utils/request'
 import { RouteRecordRaw } from 'vue-router'
 import {Menu} from '@/types/system/menu'
+import { User } from '@/types/system/user'
 export const getMenuList = () => {
   return requset<Menu[]>({
     url: '/api/menu/list'
