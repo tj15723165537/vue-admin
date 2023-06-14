@@ -2,8 +2,8 @@ package com.example.serve.controller.system.employee;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.serve.convert.employee.EmployeeConvert;
-import com.example.serve.dto.employee.EmployeeForm;
-import com.example.serve.dto.employee.EmployeeSearchDTO;
+import com.example.serve.dto.employee.EmployeeDTO;
+import com.example.serve.dto.employee.EmployeePageParamsDTO;
 import com.example.serve.entity.employee.Employee;
 import com.example.serve.service.employee.EmployeeService;
 import com.example.serve.utils.PageList;
@@ -39,7 +39,7 @@ public class EmployeeController {
             @ApiImplicitParam(name = "address", value = "地址", required = false, dataTypeClass = String.class)
     })
     @GetMapping("/list")
-    public Response<PageList<EmployeeVO>> list(EmployeeSearchDTO filter) {
+    public Response<PageList<EmployeeVO>> list(EmployeePageParamsDTO filter) {
         IPage<Employee> ipage = employeeService.getList(filter);
         List<EmployeeVO> employeeVOList = employeeConvert.entitylist2Volist(ipage.getRecords());
         return Response.ok(employeeVOList, ipage.getTotal());
@@ -47,7 +47,7 @@ public class EmployeeController {
 
     @ApiOperation(value = "添加员工")
     @PostMapping("/add")
-    public Response add(@RequestBody @Validated EmployeeForm dto) {
+    public Response add(@RequestBody @Validated EmployeeDTO dto) {
         boolean result = employeeService.add(dto);
         return Response.ok();
     }
@@ -70,7 +70,7 @@ public class EmployeeController {
 
     @ApiOperation(value = "修改员工")
     @PostMapping("/update")
-    public Response update(@RequestBody @Validated EmployeeForm dto) {
+    public Response update(@RequestBody @Validated EmployeeDTO dto) {
         Boolean result = employeeService.update(dto);
         return Response.ok();
     }

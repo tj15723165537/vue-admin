@@ -2,7 +2,7 @@ package com.example.serve.controller.system;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.serve.dto.system.UserDTO;
-import com.example.serve.dto.system.UserSearchDTO;
+import com.example.serve.dto.system.UserPageParamsDTO;
 import com.example.serve.service.system.UserService;
 import com.example.serve.utils.PageList;
 import com.example.serve.utils.Response;
@@ -22,7 +22,7 @@ public class UserController {
 
     @GetMapping("/list")
     @ApiOperation(value = "用户列表")
-    public Response<PageList<UserVO>> list(UserSearchDTO dto){
+    public Response<PageList<UserVO>> list(UserPageParamsDTO dto){
         PageList<UserVO> pageList = userService.getPage(dto);
         return Response.ok(pageList);
     }

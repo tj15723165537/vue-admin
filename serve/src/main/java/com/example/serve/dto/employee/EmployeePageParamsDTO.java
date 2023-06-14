@@ -4,7 +4,7 @@ import com.example.serve.utils.PageQuery;
 import lombok.Data;
 
 @Data
-public class EmployeeSearchDTO extends PageQuery {
+public class EmployeePageParamsDTO extends PageQuery {
 
     private String name;
 

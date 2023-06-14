@@ -1,7 +1,7 @@
 package com.example.serve.mapper.system;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.serve.dto.system.UserSearchDTO;
+import com.example.serve.dto.system.UserPageParamsDTO;
 import com.example.serve.entity.system.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Update;
 import java.util.List;
 
 public interface UserMapper extends BaseMapper<User> {
-    List<User> getPage(@Param("params") UserSearchDTO dto);
+    List<User> getPage(@Param("params") UserPageParamsDTO dto);
     Integer getTotal();
     void add(@Param("params") User user);
 
