@@ -1,16 +1,16 @@
 import { Employee, EmployeeForm } from '@/types/employee/employee'
 import { UserSearch } from '@/types/system/user'
-import requset from '@/utils/request'
+import request from '@/utils/request'
 
 export const getEmployeeList = (data: UserSearch) => {
-  return requset<ResultData<Employee>>({
+  return request<ResultData<Employee>>({
     url: '/api/employee/list',
     data
   })
 }
 
 export const addEmployee = (data: EmployeeForm) => {
-  return requset({
+  return request({
     url: '/api/employee/add',
     method: 'post',
     data
@@ -18,7 +18,7 @@ export const addEmployee = (data: EmployeeForm) => {
 }
 
 export const editEmployee = (data: EmployeeForm) => {
-  return requset({
+  return request({
     url: '/api/employee/update',
     method: 'post',
     data
@@ -26,14 +26,14 @@ export const editEmployee = (data: EmployeeForm) => {
 }
 
 export const getEmployeeDetail = (id: number) => {
-  return requset<Employee>({
+  return request<Employee>({
     url: `/api/employee/getEmployeeById/${id}`,
     data: {}
   })
 }
 
 export const delEmployee = (id: number) => {
-  return requset({
+  return request({
     url: `/api/employee/delete/${id}`,
     data: {}
   })

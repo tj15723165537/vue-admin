@@ -1,7 +1,7 @@
-import requset from '@/utils/request'
+import request from '@/utils/request'
 
 export const login = (data: object) => {
-  return requset<any>({
+  return request<any>({
     url: '/api/login',
     method: 'post',
     data

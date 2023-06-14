@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="visible" :title="title" width="50%">
+  <el-dialog v-model="visible" :title="title" width="400px">
     <el-form :model="dataForm" ref="formModel" label-width="80px">
       <el-form-item label="姓名" prop="name">
         <el-input v-model="dataForm.name" />
@@ -40,7 +40,7 @@ let dataForm = ref<EmployeeForm>({
 
 const init = async (id: number) => {
   visible.value = true
-  dataForm.value.id = null
+  dataForm.value.id = id
   if (id) {
     title.value = '编辑'
     const result = await getEmployeeDetail(id)

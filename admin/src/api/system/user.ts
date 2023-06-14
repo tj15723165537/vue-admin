@@ -1,22 +1,15 @@
-import requset from '@/utils/request'
-import { RouteRecordRaw } from 'vue-router'
-import {Menu} from '@/types/system/menu'
-import { User } from '@/types/system/user'
-export const getMenuList = () => {
-  return requset<Menu[]>({
-    url: '/api/menu/list'
-  })
-}
+import request from '@/utils/request'
+import {User} from '@/types/system/user'
 
 export const getUserList = (data: object) => {
-  return requset<ResultData<User>>({
+  return request<ResultData<User>>({
     url: '/api/user/list',
     data
   })
 }
 
 export const addUser = (data: User) => {
-  return requset({
+  return request({
     url: '/api/user/add',
     method: 'post',
     data
@@ -24,7 +17,7 @@ export const addUser = (data: User) => {
 }
 
 export const editUser = (data: User) => {
-  return requset({
+  return request({
     url: '/api/user/update',
     method: 'post',
     data
@@ -32,7 +25,7 @@ export const editUser = (data: User) => {
 }
 
 export const getUserDetail = (id: number) => {
-  return requset<User>({
+  return request<User>({
     url: `/api/user/detail/${id}`,
     data: {
     }
@@ -40,7 +33,7 @@ export const getUserDetail = (id: number) => {
 }
 
 export const delUser = (id: number) => {
-  return requset({
+  return request({
     url: `/api/user/delete/${id}`,
     data: {
     }
@@ -48,7 +41,7 @@ export const delUser = (id: number) => {
 }
 
 export const updateUserStatus = (id: number) => {
-  return requset({
+  return request({
     url: `/api/user/updateStatus/${id}`,
     data: {
     }

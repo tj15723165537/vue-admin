@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-@TableName("menu")
 public class MenuVO implements Serializable {
 
     @ApiModelProperty(value = "菜单id")

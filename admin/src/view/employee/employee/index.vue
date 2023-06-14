@@ -36,7 +36,7 @@
 <script lang="ts" setup>
 import {delEmployee, getEmployeeList} from '@/api/employee/index'
 import {onMounted, reactive, ref} from 'vue'
-import addEdit from './components/add_edit.vue'
+import addEdit from './components/add-edit.vue'
 import {ElMessageBox, ElMessage} from 'element-plus'
 import {EmployeeSearch, Employee} from '@/types/employee/employee'
 let searchState = reactive<EmployeeSearch>({

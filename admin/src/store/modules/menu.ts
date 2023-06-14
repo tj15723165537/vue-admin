@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {getMenuList} from "@/api/system";
+import {getMenuList} from "@/api/system/menu";
 import { Menu } from '@/types/system/menu';
 interface State {
     menuList: Menu[],

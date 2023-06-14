@@ -8,7 +8,8 @@ class ServeApplicationTests {
 
 
     @Test
-    void text() {
+    void test() {
+
 
     }
 

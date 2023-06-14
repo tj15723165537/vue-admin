@@ -40,14 +40,11 @@
     />
   </div>
 
-  <el-dialog v-model="crud.tempFrom.showModel" :title="crud.tempFrom.id ? '编辑' : '新增'" width="50%">
+  <el-dialog v-model="crud.tempFrom.showModel" :title="crud.tempFrom.id ? '编辑' : '新增'" width="400px">
     <el-form :model="crud.tempFrom" ref="formModel" label-width="80px">
       <el-form-item label="账号" prop="account">
         <el-input v-model="crud.tempFrom.account"/>
       </el-form-item>
-<!--      <el-form-item label="密码" prop="password">-->
-<!--        <el-input v-model="crud.tempFrom.password"/>-->
-<!--      </el-form-item>-->
       <el-form-item label="状态">
         <el-switch v-model="crud.tempFrom.status" :active-value="1" :inactive-value="0"/>
       </el-form-item>
@@ -59,7 +56,7 @@
   </el-dialog>
 </template>
 <script lang="ts" setup>
-import {addUser, delUser, editUser, getUserDetail, getUserList, updateUserStatus} from '@/api/system/index'
+import {addUser, delUser, editUser, getUserDetail, getUserList, updateUserStatus} from '@/api/system/user'
 import {onMounted, reactive, ref, watch} from 'vue'
 import {Crud} from '@/hooks/crud'
 import {ElMessage} from 'element-plus/es'

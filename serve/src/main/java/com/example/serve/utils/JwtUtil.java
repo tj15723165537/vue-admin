@@ -9,11 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class JwtUtil {
-
-         //过期时间15分钟
-         private static final long EXPIRE_TIME = 15*60*1000;
-
-         //生成签名,15分钟后过期
+         private static final long EXPIRE_TIME = 120*60*1000;
          public static String sign(String userId ,String account,String password){
          //过期时间
          Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);

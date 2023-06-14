@@ -1,4 +1,4 @@
-package com.example.serve.controller.system.employee;
+package com.example.serve.controller.employee;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.serve.convert.employee.EmployeeConvert;
