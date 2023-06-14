@@ -9,6 +9,12 @@
       :collapse-transition="false"
       :default-active="route.path"
     >
+      <el-menu-item index="/home">
+        <el-icon>
+         <HomeFilled />
+        </el-icon>
+        <template #title>首页</template>
+      </el-menu-item>
       <template v-for="item in dataList" :key="item.path">
         <el-sub-menu :index="item.path" v-if="item.children.length">
           <template #title>

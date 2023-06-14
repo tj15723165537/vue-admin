@@ -1,6 +1,7 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 import {useCommonStore} from '@/store/modules/common'
 import {useMenuStore} from '@/store/modules/menu'
+import {Menu} from "@/types/system/menu";
 
 const contactRoutes: RouteRecordRaw[] = [
     {
@@ -37,40 +38,14 @@ router.beforeEach(async (to, form, next) => {
     const menuStore = useMenuStore()
     const whiteList = ['/login']
     if (store.token) {
-        if(!menuStore.asyncRoutestMark){
+        if (!menuStore.asyncRoutestMark) {
             await menuStore.setMenuList()
-            menuStore.menuList.map((item: any) => {
-                if(item.path === '/home') return
-                console.log(item)
-                const component = {
-                    path: item.path,
-                    redirect: item.redirect,
-                    component: () => import('@/layout/index.vue'),
-                    meta: {
-                        title: item.title,
-                        icon: item.icon
-                    },
-                    children:[]
-                }
-                if(item.children?.length > 0) {
-                        item.children.map((child: any) => {
-                            const childComponent = {
-                                path: child.path,
-                                component: () => import(`../view${child.path}/index.vue`),
-                                meta: {
-                                    title: child.title,
-                                    icon: child.icon
-                                }
-                            }
-                            // @ts-ignore
-                            component.children.push(childComponent)
-                        })
-                }
-                router.addRoute(component)
+            menuStore.menuList.map((item) => {
+                router.addRoute(createRoutes(item))
             })
             menuStore.setAsyncRoutestMark(true)
             next({...to, replace: true})
-        }else{
+        } else {
             next()
         }
     } else {
@@ -82,3 +57,30 @@ router.beforeEach(async (to, form, next) => {
         }
     }
 })
+
+function createRoutes(item: Menu) {
+    const routes: RouteRecordRaw = {
+        path: item.path,
+        redirect: item.redirect,
+        component: () => import('@/layout/index.vue'),
+        meta: {
+            title: item.title,
+            icon: item.icon
+        },
+        children: []
+    }
+    if (item.children?.length! > 0) {
+        item.children!.map((child) => {
+            const childRoutes = {
+                path: child.path,
+                component: () => import(`../view${child.path}/index.vue`),
+                meta: {
+                    title: child.title,
+                    icon: child.icon
+                }
+            }
+            routes.children!.push(childRoutes)
+        })
+    }
+    return routes
+}

@@ -1,8 +1,14 @@
 import {defineStore} from 'pinia'
 import {getMenuList} from "@/api/system";
-
+import { Menu } from '@/types/system/menu';
+interface State {
+    menuList: Menu[],
+    asyncRoutestMark: boolean,
+    hasSetMenuList: boolean,
+    isCollapse: boolean
+}
 export const useMenuStore = defineStore('menu', {
-    state: () => {
+    state: () : State =>  {
         return {
             menuList: [],
             asyncRoutestMark: false,
@@ -13,7 +19,6 @@ export const useMenuStore = defineStore('menu', {
     actions: {
         async setMenuList() {
           const result = await getMenuList()
-          // @ts-ignore
           this.menuList = result.data
         },
         setAsyncRoutestMark(val: boolean) {
