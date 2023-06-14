@@ -21,7 +21,7 @@ public class MenuController {
     private MenuService menuService;
 
     @GetMapping("/list")
-    @ApiOperation("获取菜单列表")
+    @ApiOperation("菜单列表")
     public Response<MenuVO[]> getList(){
         List<MenuVO> list = menuService.getList();
         return Response.ok(list);
@@ -43,10 +43,33 @@ public class MenuController {
     }
 
     @GetMapping("/delete/{id}")
-    @ApiOperation("获取菜单列表")
+    @ApiOperation("删除菜单")
     public Response delete(@PathVariable Long id){
         menuService.delete(id);
         return Response.ok();
+    }
+
+    @PostMapping("/update")
+    @ApiOperation("编辑菜单")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "菜单id", required = true, dataTypeClass = String.class),
+            @ApiImplicitParam(name = "path", value = "菜单路径", required = true, dataTypeClass = String.class),
+            @ApiImplicitParam(name = "name", value = "路由名称", required = true, dataTypeClass = String.class),
+            @ApiImplicitParam(name = "redirect", value = "重定向路径", required = true, dataTypeClass = String.class),
+            @ApiImplicitParam(name = "title", value = "菜单标题", required = true, dataTypeClass = String.class),
+            @ApiImplicitParam(name = "icon", value = "菜单图标", required = true, dataTypeClass = String.class),
+            @ApiImplicitParam(name = "pid", value = "父级菜单", required = true, dataTypeClass = Long.class)
+    })
+    public Response update(@RequestBody @Validated MenuDTO menuDTO){
+        menuService.update(menuDTO);
+        return Response.ok();
+    }
+
+    @GetMapping("/detail/{id}")
+    @ApiOperation("菜单详情")
+    public Response<MenuVO> detail(@PathVariable Long id){
+        MenuVO menuVO = menuService.getDetail(id);
+        return Response.ok(menuVO);
     }
 
 }

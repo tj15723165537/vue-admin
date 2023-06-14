@@ -78,7 +78,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
             // 验证 token
             try {
                 if (!JwtUtil.verity(token, user.getPassword())) {
-                    throw new BusinessException("无效的令牌");
+                    throw new BusinessException(401,"无效的令牌");
                 }
             } catch (JWTVerificationException e) {
                 throw new BusinessException("401");

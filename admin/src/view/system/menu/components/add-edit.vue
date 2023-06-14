@@ -22,7 +22,6 @@
         <el-input v-model="dataForm.redirect"/>
       </el-form-item>
       <el-form-item label="菜单图标" prop="icon">
-<!--        <el-input v-model="dataForm.icon"/>-->
         <Icon-picker v-model="dataForm.icon"></Icon-picker>
       </el-form-item>
       <el-form-item>
@@ -37,7 +36,7 @@ import {inject, ref, Ref} from 'vue'
 import {addEmployee, editEmployee, getEmployeeDetail} from '@/api/employee'
 import {ElMessage} from 'element-plus'
 import {Menu, MenuForm} from '@/types/system/menu'
-import {addMenu} from "@/api/system/menu";
+import {addMenu, getMenuDetail, updateMenu} from "@/api/system/menu";
 import IconPicker from "@/components/IconPicker/index.vue";
 const menuList: Ref<Menu[]> = inject('menuList')!
 const treeMenuList = ref()
@@ -79,22 +78,21 @@ const init = async (id: string) => {
     visible.value = true
     treeMenuList.value = createTreeData()
     dataForm.value.id = id
-    // if (id) {
-    //     title.value = '编辑'
-    //     const result = await getEmployeeDetail(id)
-    //     if (result) dataForm.value = result.data
-    // } else {
-    //     title.value = '新建'
-    //     if (formModel.value) {
-    //         formModel.value.resetFields()
-    //     }
-    // }
+    if (id) {
+        title.value = '编辑'
+        const result = await getMenuDetail(id)
+        if (result) dataForm.value = result.data
+    } else {
+        title.value = '新建'
+        if (formModel.value) {
+            formModel.value.resetFields()
+        }
+    }
 }
 
 const submit = () => {
-    console.log(dataForm.value)
-    // const submitFunc = dataForm.value.id ? editEmployee : addEmployee
-    addMenu(dataForm.value).then((res) => {
+    const submitFunc = dataForm.value.id ? updateMenu : addMenu
+    submitFunc(dataForm.value).then((res) => {
         if (res) {
             ElMessage.success('操作成功')
             visible.value = false

@@ -15,4 +15,8 @@ public interface MenuService extends IService<Menu> {
     void add(MenuDTO menuDTO);
 
     void delete(Long id);
+
+    void update(MenuDTO menuDTO);
+
+    MenuVO getDetail(Long id);
 }

@@ -33,7 +33,7 @@ const handLogout = () => {
     type: 'warning'
   })
     .then((res) => {
-      commonStore.setToken('')
+      commonStore.removeToken()
       router.push('/login')
     })
     .catch((err) => {})

@@ -40,6 +40,8 @@ const request = <T>(option: RequestOption): Promise<Response<T>> => {
         } else {
           if (res.data.code !== 200) {
             if (res.data.code === 401) {
+              const store = useCommonStore()
+              store.removeToken()
               router.push('/login')
             }
             const errMsg = res.data.msg || res.data.message || '意料之外的错误'

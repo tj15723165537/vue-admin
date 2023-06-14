@@ -13,6 +13,10 @@ import java.util.List;
 
 @Data
 public class MenuDTO implements Serializable {
+
+    @ApiModelProperty(value = "菜单id")
+    private Long id;
+
     @ApiModelProperty(value = "菜单路径")
     @NotEmpty(message = "菜单路径不能为空")
     private String path;

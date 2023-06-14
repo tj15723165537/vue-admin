@@ -1,5 +1,7 @@
 package com.example.serve.service.system.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.serve.convert.system.MenuConvert;
 import com.example.serve.dto.system.MenuDTO;
@@ -49,6 +51,32 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
             }
         });
         getBaseMapper().deleteById(id);
+    }
+
+    @Override
+    public void update(MenuDTO menuDTO) {
+        if(Objects.isNull(menuDTO.getId())){
+            throw new BusinessException("菜单id不能为空");
+        }
+        Menu parentMenu = getBaseMapper().selectById(menuDTO.getPid());
+        if (Objects.isNull(parentMenu)) {
+            throw new BusinessException("父级菜单不存在");
+        }
+        Menu entity = menuConvert.dto2Entity(menuDTO);
+        LambdaQueryWrapper<Menu> lambdaQueryWrapper = new LambdaQueryWrapper<Menu>();
+        this.update(entity,lambdaQueryWrapper.eq(Menu::getId, menuDTO.getId()) );
+    }
+
+    @Override
+    public MenuVO getDetail(Long id) {
+        if(Objects.isNull(id)){
+            throw new BusinessException("菜单id不能为空");
+        }
+        Menu menu = getBaseMapper().selectById(id);
+        if (Objects.isNull(menu)) {
+            throw new BusinessException("菜单不存在");
+        }
+        return menuConvert.entity2Vo(menu);
     }
 
     public List<MenuVO> listWithTree() {

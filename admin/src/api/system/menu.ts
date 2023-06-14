@@ -6,8 +6,6 @@ export const getMenuList = () => {
   })
 }
 
-
-
 export const addMenu = (data: MenuForm) => {
   return request({
     url: '/api/menu/add',
@@ -16,9 +14,22 @@ export const addMenu = (data: MenuForm) => {
   })
 }
 
-
 export const delMenu = (id:string) => {
   return request({
     url: `/api/menu/delete/${id}`
+  })
+}
+
+export const updateMenu = (data: MenuForm) => {
+  return request({
+    url: '/api/menu/update',
+    method: 'post',
+    data
+  })
+}
+
+export const getMenuDetail = (id:string) => {
+  return request<Menu>({
+    url: `/api/menu/detail/${id}`
   })
 }
