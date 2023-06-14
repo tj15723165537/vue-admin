@@ -3,12 +3,12 @@ import {ElMessage} from 'element-plus'
 import {useCommonStore} from '@/store/modules/common'
 import {router} from '@/router/index'
 
-const store = useCommonStore()
 const instance = axios.create({
   timeout: 10000
 })
 
 instance.interceptors.request.use((request) => {
+  const store = useCommonStore()
   if (store.token) {
     request.headers!['authorization'] = store.token
   }

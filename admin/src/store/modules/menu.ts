@@ -1,20 +1,26 @@
-import { defineStore } from 'pinia'
+import {defineStore} from 'pinia'
+import {getMenuList} from "@/api/system";
+
 export const useMenuStore = defineStore('menu', {
-  state: () => {
-    return {
-      menuList: [],
-      hasSetMenuList: false,
-      isCollapse: false
-    }
-  },
-  // 也可以定义为
-  // state: () => ({ count: 0 })
-  actions: {
-    setMenuList(val: any) {
-      this.menuList = val
+    state: () => {
+        return {
+            menuList: [],
+            asyncRoutestMark: false,
+            hasSetMenuList: false,
+            isCollapse: false
+        }
     },
-    setIsCollapse() {
-      this.isCollapse = !this.isCollapse
+    actions: {
+        async setMenuList() {
+          const result = await getMenuList()
+          // @ts-ignore
+          this.menuList = result.data
+        },
+        setAsyncRoutestMark(val: boolean) {
+            this.asyncRoutestMark = val
+        },
+        setIsCollapse() {
+            this.isCollapse = !this.isCollapse
+        }
     }
-  }
 })

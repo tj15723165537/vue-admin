@@ -45,15 +45,10 @@ import { getMenuList } from '@/api/system/index'
 import { onMounted, ref } from 'vue'
 import { useRouter, useRoute, RouteRecordRaw } from 'vue-router'
 import { useMenuStore } from '@/store/modules/menu'
-
 const store = useMenuStore()
-const router = useRouter()
 const route = useRoute()
 let dataList = ref<RouteRecordRaw[]>()
-
-const result = await getMenuList({})
-dataList.value = result.data
-store.setMenuList(result)
+dataList.value = store.menuList
 </script>
 <style lang="scss" scoped>
 .sidebar {

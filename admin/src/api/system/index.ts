@@ -1,10 +1,9 @@
 import requset from '@/utils/request'
 import { RouteRecordRaw } from 'vue-router'
 
-export const getMenuList = (data: object) => {
+export const getMenuList = () => {
   return requset<RouteRecordRaw[]>({
-    url: '/api/menu/list',
-    data
+    url: '/api/menu/list'
   })
 }
 
