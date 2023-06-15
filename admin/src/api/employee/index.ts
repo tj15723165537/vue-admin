@@ -5,7 +5,8 @@ import request from '@/utils/request'
 export const getEmployeeList = (data: UserSearch) => {
   return request<ResultData<Employee>>({
     url: '/api/employee/list',
-    data
+    data,
+    hideLoading: true
   })
 }
 
@@ -27,14 +28,12 @@ export const editEmployee = (data: EmployeeForm) => {
 
 export const getEmployeeDetail = (id: number) => {
   return request<Employee>({
-    url: `/api/employee/getEmployeeById/${id}`,
-    data: {}
+    url: `/api/employee/getEmployeeById/${id}`
   })
 }
 
 export const delEmployee = (id: number) => {
   return request({
-    url: `/api/employee/delete/${id}`,
-    data: {}
+    url: `/api/employee/delete/${id}`
   })
 }

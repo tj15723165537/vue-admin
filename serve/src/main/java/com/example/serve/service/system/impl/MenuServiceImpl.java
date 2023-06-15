@@ -59,7 +59,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
             throw new BusinessException("菜单id不能为空");
         }
         Menu parentMenu = getBaseMapper().selectById(menuDTO.getPid());
-        if (Objects.isNull(parentMenu)) {
+        if (Objects.isNull(parentMenu)&&menuDTO.getPid()!=0) {
             throw new BusinessException("父级菜单不存在");
         }
         Menu entity = menuConvert.dto2Entity(menuDTO);

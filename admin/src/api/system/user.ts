@@ -4,7 +4,8 @@ import {User} from '@/types/system/user'
 export const getUserList = (data: object) => {
   return request<ResultData<User>>({
     url: '/api/user/list',
-    data
+    data,
+    hideLoading: true
   })
 }
 
@@ -26,24 +27,18 @@ export const editUser = (data: User) => {
 
 export const getUserDetail = (id: number) => {
   return request<User>({
-    url: `/api/user/detail/${id}`,
-    data: {
-    }
+    url: `/api/user/detail/${id}`
   })
 }
 
 export const delUser = (id: number) => {
   return request({
-    url: `/api/user/delete/${id}`,
-    data: {
-    }
+    url: `/api/user/delete/${id}`
   })
 }
 
 export const updateUserStatus = (id: number) => {
   return request({
-    url: `/api/user/updateStatus/${id}`,
-    data: {
-    }
+    url: `/api/user/updateStatus/${id}`
   })
 }

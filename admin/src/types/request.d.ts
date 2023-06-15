@@ -7,6 +7,7 @@ interface RequestOption {
   url: string
   method?: string
   data?: object
+  hideLoading?: boolean
 }
 
 interface Response<T> {
