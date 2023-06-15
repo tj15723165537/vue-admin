@@ -1,7 +1,7 @@
 <template>
   <el-form :inline="true">
     <el-form-item>
-      <el-button type="primary" @click="addOrEdit(undefined)">添加</el-button>
+      <el-button type="primary" @click="addOrEdit()">添加</el-button>
     </el-form-item>
   </el-form>
   <el-table
@@ -12,6 +12,8 @@
           default-expand-all
   >
     <el-table-column prop="title" label="名称"/>
+    <el-table-column prop="path" label="路径"/>
+    <el-table-column prop="redirect" label="重定向"/>
     <el-table-column label="操作">
       <template v-slot="{ row }">
         <el-button type="primary" text bg size="small" @click="addOrEdit(row.id)">编辑</el-button>

@@ -55,21 +55,21 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
 
     @Override
     public void update(MenuDTO menuDTO) {
-        if(Objects.isNull(menuDTO.getId())){
+        if (Objects.isNull(menuDTO.getId())) {
             throw new BusinessException("菜单id不能为空");
         }
         Menu parentMenu = getBaseMapper().selectById(menuDTO.getPid());
-        if (Objects.isNull(parentMenu)&&menuDTO.getPid()!=0) {
+        if (Objects.isNull(parentMenu) && menuDTO.getPid() != 0) {
             throw new BusinessException("父级菜单不存在");
         }
         Menu entity = menuConvert.dto2Entity(menuDTO);
         LambdaQueryWrapper<Menu> lambdaQueryWrapper = new LambdaQueryWrapper<Menu>();
-        this.update(entity,lambdaQueryWrapper.eq(Menu::getId, menuDTO.getId()) );
+        this.update(entity, lambdaQueryWrapper.eq(Menu::getId, menuDTO.getId()));
     }
 
     @Override
     public MenuVO getDetail(Long id) {
-        if(Objects.isNull(id)){
+        if (Objects.isNull(id)) {
             throw new BusinessException("菜单id不能为空");
         }
         Menu menu = getBaseMapper().selectById(id);

@@ -12,7 +12,7 @@
     <el-form-item>
       <el-button type="success" @click="search">查找</el-button>
       <el-button @click="reset">重置</el-button>
-      <el-button type="primary" @click="addOrEdit(undefined)">添加</el-button>
+      <el-button type="primary" @click="addOrEdit()">添加</el-button>
     </el-form-item>
   </el-form>
   <el-table :data="tableData" border style="width: 100%; margin-top: 10px">
