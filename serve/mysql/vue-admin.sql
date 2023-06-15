@@ -11,7 +11,7 @@
  Target Server Version : 80032
  File Encoding         : 65001
 
- Date: 05/05/2023 09:18:41
+ Date: 15/06/2023 16:33:21
 */
 
 SET NAMES utf8mb4;
@@ -42,7 +42,7 @@ INSERT INTO `employee` VALUES (10, 'Jessica Garcia', '555-222-3333', '321 Pine A
 INSERT INTO `employee` VALUES (11, 'Kevin Martinez', '555-444-5555', '789 Elm St', '2022-09-30 00:00:00', NULL, NULL);
 INSERT INTO `employee` VALUES (12, 'Lisa Nguyen', '555-777-8888', '456 Maple Ave', '2022-10-31 00:00:00', NULL, NULL);
 INSERT INTO `employee` VALUES (13, 'Maria Hernandez', '555-222-4444', '123 Cedar Ln', '2022-11-15 00:00:00', NULL, NULL);
-INSERT INTO `employee` VALUES (14, 'Nathan Kim', '555-666-7777', '321 Oak Ave', '2022-12-20 00:00:00', NULL, NULL);
+INSERT INTO `employee` VALUES (14, 'Nathan Kim', '555-666-7777', '321 Oak Ave', '2022-12-20 08:00:00', NULL, '2023-06-15 10:57:20');
 INSERT INTO `employee` VALUES (15, 'Olivia Wilson', '555-123-4567', '654 Maple St', '2023-01-31 00:00:00', NULL, NULL);
 INSERT INTO `employee` VALUES (16, 'Peter Lee', '555-555-1111', '987 Pine Ave', '2023-02-14 00:00:00', NULL, '2023-04-20 09:46:59');
 INSERT INTO `employee` VALUES (17, 'Rachel Brown', '555-777-9999', '456 Elm St', '2023-03-25 00:00:00', NULL, NULL);
@@ -57,7 +57,7 @@ INSERT INTO `employee` VALUES (22, 'William Hernandez', '555-444-3333', '789 Map
 -- ----------------------------
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu`  (
-  `id` bigint NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `path` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `redirect` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
@@ -67,35 +67,35 @@ CREATE TABLE `menu`  (
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1669167714045050882 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
-INSERT INTO `menu` VALUES (1, 'home', '/home', '/home', '首页', 'HomeFilled', 0, NULL, NULL);
-INSERT INTO `menu` VALUES (2, 'system', '/system', '/system/user', '系统管理', 'Tools', 0, NULL, NULL);
-INSERT INTO `menu` VALUES (3, 'user', '/system/user', 'user', '用户管理', 'UserFilled', 2, NULL, NULL);
-INSERT INTO `menu` VALUES (4, 'employee', '/employee', '/employee', '员工管理', 'Avatar', 0, NULL, NULL);
-INSERT INTO `menu` VALUES (5, 'employee', '/employee/employee', 'employee', '员工管理', 'Avatar', 4, NULL, NULL);
+INSERT INTO `menu` VALUES (2, 'system', '/system', '/system/user', '系统管理', 'Tools', 0, NULL, '2023-06-15 10:55:33');
+INSERT INTO `menu` VALUES (3, 'user', '/system/user', 'user', '用户管理', 'UserFilled', 2, NULL, '2023-06-15 10:58:01');
+INSERT INTO `menu` VALUES (4, 'employee', '/employee', '/employee', '员工管理', 'Avatar', 0, NULL, '2023-06-15 10:58:05');
+INSERT INTO `menu` VALUES (5, 'employee', '/employee/employee', 'employee', '员工管理', 'Avatar', 4, NULL, '2023-06-15 10:58:07');
+INSERT INTO `menu` VALUES (6, 'menu', '/system/menu', 'menu', '菜单管理', 'Menu', 2, NULL, '2023-06-15 10:58:03');
 
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
-  `id` bigint NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `account` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `password` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `status` tinyint NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1677918625722 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1659043520342994947 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (1677918625692, 'admin', '$2a$10$BgawVKm6v34zK.vqhY2jwu0MFaFQKRZSkoekhdxkC6b3ygYKW5NaS', 1, '2023-03-04 08:30:25', '2023-03-04 08:30:25');
-INSERT INTO `user` VALUES (1677918625720, 'user', '$2a$10$nBMeOMpRlXIbAX.l5HxVw.wfwS99OT.IXGYLLKd4oL5WGGaejOYgq', 0, '2023-04-27 11:10:17', '2023-04-27 11:10:17');
+INSERT INTO `user` VALUES (1659043520342994946, 'tj', '$2a$10$WmsTun4ADIUO9A0WFtsi.uzQnNnwBlPTCCY5m5Dptj/3YghCjhzsm', 0, '2023-05-18 12:01:25', '2023-05-18 12:01:25');
 
 SET FOREIGN_KEY_CHECKS = 1;
