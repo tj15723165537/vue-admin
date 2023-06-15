@@ -1,5 +1,5 @@
-import {ElMessage, ElMessageBox} from 'element-plus'
-import {reactive} from 'vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { reactive } from 'vue'
 
 export interface IcrudModel {
   rowIdText?: string // 所有的crud操作的是哪一个字段
@@ -21,7 +21,7 @@ export interface IcrudModel {
   fail?: Function
 }
 
-export class Crud <T>{
+export class Crud<T> {
   rowIdText: string
   tempFrom: any
   apiList: {
@@ -36,13 +36,13 @@ export class Crud <T>{
   listQuery
   listQueryCopy
   tempCopy
-  data:{
+  data: {
     list: T[]
   }
-  pagination:{
-    total:number
-    page:number
-    size:number
+  pagination: {
+    total: number
+    page: number
+    size: number
   }
 
   constructor(obj: IcrudModel) {
@@ -82,12 +82,12 @@ export class Crud <T>{
   }
 
   // 获取数据
-  getList(page?: any, expand?: any){
+  getList(page?: any, expand?: any) {
     if (page) {
       this.listQuery.size = page.size || 10
       this.listQuery.page = page.page || 1
     }
-    return this.apiList['L']!(this.listQuery).then((res:Response<ResultData<T>>) => {
+    return this.apiList['L']!(this.listQuery).then((res: Response<ResultData<T>>) => {
       if (res.code === 200) {
         this.data.list = res.data.content
         // this.data.list = expand && expand.list ? res.data[expand.list] : res.data

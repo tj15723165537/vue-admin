@@ -21,10 +21,11 @@
   </el-dialog>
 </template>
 <script lang="ts" setup>
-import {ref} from 'vue'
-import {addEmployee, editEmployee, getEmployeeDetail} from '@/api/employee'
-import {ElMessage} from 'element-plus'
-import {EmployeeForm} from '@/types/employee/employee'
+import { ref } from 'vue'
+import { addEmployee, editEmployee, getEmployeeDetail } from '@/api/employee'
+import { ElMessage } from 'element-plus'
+import { EmployeeForm } from '@/types/employee/employee'
+
 const visible = ref<boolean>(false)
 const title = ref<string>('新建')
 const emit = defineEmits(['getList'])

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
 export const useCommonStore = defineStore('common', {
-  state: ():{token:string|undefined} => {
+  state: (): { token: string | undefined } => {
     return {
       token: undefined
     }
@@ -10,7 +10,7 @@ export const useCommonStore = defineStore('common', {
     setToken(val: string) {
       this.token = val
     },
-    removeToken(){
+    removeToken() {
       this.token = undefined
     }
   },

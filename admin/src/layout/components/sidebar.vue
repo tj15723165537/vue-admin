@@ -11,7 +11,7 @@
     >
       <el-menu-item index="/home">
         <el-icon>
-         <HomeFilled />
+          <HomeFilled />
         </el-icon>
         <template #title>首页</template>
       </el-menu-item>
@@ -51,6 +51,7 @@ import { getMenuList } from '@/api/system/index'
 import { onMounted, ref } from 'vue'
 import { useRouter, useRoute, RouteRecordRaw } from 'vue-router'
 import { useMenuStore } from '@/store/modules/menu'
+
 const store = useMenuStore()
 const route = useRoute()
 let dataList = ref<RouteRecordRaw[]>()

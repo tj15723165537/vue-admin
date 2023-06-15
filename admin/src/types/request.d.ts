@@ -18,7 +18,7 @@ interface Response<T> {
   total?: number
 }
 
-interface ResultData<T>{
-  content: T[],
-  total?:number
+interface ResultData<T> {
+  content: T[]
+  total?: number
 }

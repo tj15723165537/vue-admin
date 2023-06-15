@@ -1,5 +1,6 @@
 import request from '@/utils/request'
-import {Menu, MenuForm} from '@/types/system/menu'
+import { Menu, MenuForm } from '@/types/system/menu'
+
 export const getMenuList = () => {
   return request<Menu[]>({
     url: '/api/menu/list',
@@ -15,7 +16,7 @@ export const addMenu = (data: MenuForm) => {
   })
 }
 
-export const delMenu = (id:string) => {
+export const delMenu = (id: string) => {
   return request({
     url: `/api/menu/delete/${id}`
   })
@@ -29,7 +30,7 @@ export const updateMenu = (data: MenuForm) => {
   })
 }
 
-export const getMenuDetail = (id:string) => {
+export const getMenuDetail = (id: string) => {
   return request<Menu>({
     url: `/api/menu/detail/${id}`
   })

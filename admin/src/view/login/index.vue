@@ -21,8 +21,10 @@ import { login } from '@/api/common'
 import type { FormRules, FormInstance } from 'element-plus'
 import { useCommonStore } from '@/store/modules/common'
 import { ElMessage } from 'element-plus'
+
 const router = useRouter()
 const store: any = useCommonStore()
+
 interface IformStatus {
   account: string
   password: string
@@ -115,7 +117,7 @@ label {
 }
 
 input {
-  margin-right: calc($ruler/2);
+  margin-right: calc($ruler / 2);
   box-shadow: inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
   width: 100%;
   box-sizing: border-box;
@@ -145,18 +147,18 @@ button {
   }
 
   .icon {
-    margin-right: calc($ruler/2);
+    margin-right: calc($ruler / 2);
   }
 
   &.unit {
-    border-radius: calc($ruler/2);
+    border-radius: calc($ruler / 2);
     line-height: 0;
     width: $ruler * 3;
     height: $ruler * 3;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    margin: 0 calc($ruler/2);
+    margin: 0 calc($ruler / 2);
     font-size: $ruler * 1.2;
 
     .icon {
