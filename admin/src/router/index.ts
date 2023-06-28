@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import { useCommonStore } from '@/store/modules/common'
-import { useMenuStore } from '@/store/modules/menu'
-import { Menu } from '@/types/system/menu'
+import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
+import {useCommonStore} from '@/store/modules/common'
+import {useMenuStore} from '@/store/modules/menu'
+import {Menu} from '@/types/system/menu'
 
 const contactRoutes: RouteRecordRaw[] = [
   {
@@ -44,7 +44,7 @@ router.beforeEach(async (to, form, next) => {
         router.addRoute(createRoutes(item))
       })
       menuStore.setAsyncRoutestMark(true)
-      next({ ...to, replace: true })
+      next({...to, replace: true})
     } else {
       next()
     }

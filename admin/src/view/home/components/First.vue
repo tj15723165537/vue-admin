@@ -3,8 +3,8 @@
 </template>
 <script lang="ts" setup>
 import * as echarts from 'echarts'
-import type { EChartsType } from 'echarts'
-import { nextTick, onBeforeUnmount } from 'vue'
+import type {EChartsType} from 'echarts'
+import {nextTick, onBeforeUnmount} from 'vue'
 
 let myChart: EChartsType | null = null
 const props = {

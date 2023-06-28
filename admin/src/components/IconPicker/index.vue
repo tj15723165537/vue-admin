@@ -5,23 +5,23 @@
     </template>
     <div class="el-icon-picker">
       <component
-        v-for="icon in globalProperties.$icons"
-        :key="icon"
-        :class="[icon, 'icon', { 'icon-active': icon == modelValue }]"
-        :is="icon"
-        @click="emits('update:modelValue', icon)"
+          v-for="icon in globalProperties.$icons"
+          :key="icon"
+          :class="[icon, 'icon', { 'icon-active': icon == modelValue }]"
+          :is="icon"
+          @click="emits('update:modelValue', icon)"
       >
       </component>
     </div>
   </el-popover>
 </template>
 <script setup lang="ts">
-import { ComponentInternalInstance, defineEmits, defineProps, getCurrentInstance } from 'vue'
+import {ComponentInternalInstance, defineEmits, defineProps, getCurrentInstance} from 'vue'
 
 const {
   appContext: {
     app: {
-      config: { globalProperties }
+      config: {globalProperties}
     }
   }
 } = getCurrentInstance() as ComponentInternalInstance

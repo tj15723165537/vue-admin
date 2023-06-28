@@ -2,16 +2,16 @@
   <div class="sidebar">
     <div class="title">{{ store.isCollapse ? 'EMP' : 'EMPOLYEE' }}</div>
     <el-menu
-      class="el-menu-vertical-demo"
-      :unique-opened="true"
-      :router="true"
-      :collapse="store.isCollapse"
-      :collapse-transition="false"
-      :default-active="route.path"
+        class="el-menu-vertical-demo"
+        :unique-opened="true"
+        :router="true"
+        :collapse="store.isCollapse"
+        :collapse-transition="false"
+        :default-active="route.path"
     >
       <el-menu-item index="/home">
         <el-icon>
-          <HomeFilled />
+          <HomeFilled/>
         </el-icon>
         <template #title>首页</template>
       </el-menu-item>
@@ -47,10 +47,10 @@
 </template>
 
 <script setup lang="ts">
-import { getMenuList } from '@/api/system/index'
-import { onMounted, ref } from 'vue'
-import { useRouter, useRoute, RouteRecordRaw } from 'vue-router'
-import { useMenuStore } from '@/store/modules/menu'
+import {getMenuList} from '@/api/system/index'
+import {onMounted, ref} from 'vue'
+import {useRouter, useRoute, RouteRecordRaw} from 'vue-router'
+import {useMenuStore} from '@/store/modules/menu'
 
 const store = useMenuStore()
 const route = useRoute()

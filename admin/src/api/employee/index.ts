@@ -1,5 +1,5 @@
-import { Employee, EmployeeForm } from '@/types/employee/employee'
-import { UserSearch } from '@/types/system/user'
+import {Employee, EmployeeForm} from '@/types/employee/employee'
+import {UserSearch} from '@/types/system/user'
 import request from '@/utils/request'
 
 export const getEmployeeList = (data: UserSearch) => {

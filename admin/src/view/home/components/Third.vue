@@ -3,8 +3,8 @@
 </template>
 <script lang="ts" setup>
 import * as echarts from 'echarts'
-import type { EChartsType } from 'echarts'
-import { nextTick, onBeforeUnmount } from 'vue'
+import type {EChartsType} from 'echarts'
+import {nextTick, onBeforeUnmount} from 'vue'
 
 let myChart: EChartsType | null = null
 const props = {
@@ -39,9 +39,9 @@ nextTick(() => {
           show: false
         },
         data: [
-          { value: 580, name: 'Email' },
-          { value: 484, name: 'Union Ads' },
-          { value: 300, name: 'Video Ads' }
+          {value: 580, name: 'Email'},
+          {value: 484, name: 'Union Ads'},
+          {value: 300, name: 'Video Ads'}
         ]
       }
     ]

@@ -1,5 +1,5 @@
 import request from '@/utils/request'
-import { Menu, MenuForm } from '@/types/system/menu'
+import {Menu, MenuForm} from '@/types/system/menu'
 
 export const getMenuList = () => {
   return request<Menu[]>({

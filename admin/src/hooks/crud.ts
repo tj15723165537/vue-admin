@@ -1,5 +1,5 @@
-import { ElMessage, ElMessageBox } from 'element-plus'
-import { reactive } from 'vue'
+import {ElMessage, ElMessageBox} from 'element-plus'
+import {reactive} from 'vue'
 
 export interface IcrudModel {
   rowIdText?: string // 所有的crud操作的是哪一个字段
@@ -73,12 +73,12 @@ export class Crud<T> {
     this.fail = obj.fail
 
     // 请求参数
-    this.listQuery = reactive({ ...obj.listQuery })
-    this.listQueryCopy = { ...obj.listQuery }
+    this.listQuery = reactive({...obj.listQuery})
+    this.listQueryCopy = {...obj.listQuery}
 
     // 弹窗展示内容
-    this.tempFrom = reactive({ showModel: false, ...obj.tempFrom })
-    this.tempCopy = { showModel: false, ...obj.tempFrom }
+    this.tempFrom = reactive({showModel: false, ...obj.tempFrom})
+    this.tempCopy = {showModel: false, ...obj.tempFrom}
   }
 
   // 获取数据
@@ -113,7 +113,7 @@ export class Crud<T> {
 
   // 添加修改数据
   addEditItem() {
-    let params = { ...this.tempFrom }
+    let params = {...this.tempFrom}
     delete params.showModel
     if (!params.id) {
       delete params.id
@@ -147,17 +147,18 @@ export class Crud<T> {
       cancelButtonText: '取消',
       type: 'warning'
     })
-      .then(async (res) => {
-        this.apiList['D']!(id).then((res: any) => {
-          if (res.code === 200) {
-            this.getList()
-            ElMessage.success('删除成功!')
-          } else {
-            ElMessage.error('删除失败!')
-          }
+        .then(async (res) => {
+          this.apiList['D']!(id).then((res: any) => {
+            if (res.code === 200) {
+              this.getList()
+              ElMessage.success('删除成功!')
+            } else {
+              ElMessage.error('删除失败!')
+            }
+          })
         })
-      })
-      .catch(() => {})
+        .catch(() => {
+        })
   }
 
   // 取消

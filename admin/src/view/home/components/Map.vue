@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick } from 'vue'
+import {nextTick} from 'vue'
 
 nextTick(() => {
   var map = new BMapGL.Map('map')

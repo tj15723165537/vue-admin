@@ -1,13 +1,13 @@
 <template>
   <el-form :inline="true">
     <el-form-item label="姓名">
-      <el-input v-model="searchState.name" />
+      <el-input v-model="searchState.name"/>
     </el-form-item>
     <el-form-item label="电话">
-      <el-input v-model="searchState.phone" />
+      <el-input v-model="searchState.phone"/>
     </el-form-item>
     <el-form-item label="家庭住址">
-      <el-input v-model="searchState.address" />
+      <el-input v-model="searchState.address"/>
     </el-form-item>
     <el-form-item>
       <el-button type="success" @click="search">查找</el-button>
@@ -16,10 +16,10 @@
     </el-form-item>
   </el-form>
   <el-table :data="tableData" border style="width: 100%; margin-top: 10px">
-    <el-table-column prop="name" label="姓名" />
-    <el-table-column prop="phone" label="电话" />
-    <el-table-column prop="date" label="入职日期" />
-    <el-table-column prop="address" label="家庭住址" />
+    <el-table-column prop="name" label="姓名"/>
+    <el-table-column prop="phone" label="电话"/>
+    <el-table-column prop="date" label="入职日期"/>
+    <el-table-column prop="address" label="家庭住址"/>
     <el-table-column label="操作">
       <template v-slot="{ row }">
         <el-button type="primary" text bg size="small" @click="addOrEdit(row.id)">编辑</el-button>
@@ -29,21 +29,21 @@
   </el-table>
   <div class="page">
     <el-pagination
-      background
-      layout="prev, pager, next, jumper, sizes, total"
-      :total="total"
-      @current-change="pageChange"
-      @size-change="sizeChange"
+        background
+        layout="prev, pager, next, jumper, sizes, total"
+        :total="total"
+        @current-change="pageChange"
+        @size-change="sizeChange"
     />
   </div>
-  <add-edit ref="addEditRef" @getList="getList" />
+  <add-edit ref="addEditRef" @getList="getList"/>
 </template>
 <script lang="ts" setup>
-import { delEmployee, getEmployeeList } from '@/api/employee/index'
-import { onMounted, reactive, ref } from 'vue'
+import {delEmployee, getEmployeeList} from '@/api/employee/index'
+import {onMounted, reactive, ref} from 'vue'
 import addEdit from './components/add-edit.vue'
-import { ElMessageBox, ElMessage } from 'element-plus'
-import { EmployeeSearch, Employee } from '@/types/employee/employee'
+import {ElMessageBox, ElMessage} from 'element-plus'
+import {EmployeeSearch, Employee} from '@/types/employee/employee'
 
 let searchState = reactive<EmployeeSearch>({
   page: 1,

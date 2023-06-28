@@ -19,7 +19,7 @@
 import Navbar from './components/navbar.vue'
 import Sidebar from './components/sidebar.vue'
 import Content from './components/content.vue'
-import { useMenuStore } from '@/store/modules/menu'
+import {useMenuStore} from '@/store/modules/menu'
 
 const store = useMenuStore()
 </script>

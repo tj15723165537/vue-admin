@@ -1,5 +1,5 @@
 import request from '@/utils/request'
-import { User } from '@/types/system/user'
+import {User} from '@/types/system/user'
 
 export const getUserList = (data: object) => {
   return request<ResultData<User>>({

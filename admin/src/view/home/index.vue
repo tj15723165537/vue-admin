@@ -1,13 +1,13 @@
 <template>
   <div class="home">
     <div class="left">
-      <First />
-      <Second />
+      <First/>
+      <Second/>
     </div>
-    <Map />
+    <Map/>
     <div class="right">
-      <Third />
-      <Fourth />
+      <Third/>
+      <Fourth/>
     </div>
   </div>
 </template>

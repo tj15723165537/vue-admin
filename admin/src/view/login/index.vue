@@ -5,22 +5,22 @@
         <h1>LOGIN</h1>
       </div>
       <label>
-        <input type="text" placeholder="账号" v-model="formStatus.account" />
+        <input type="text" placeholder="账号" v-model="formStatus.account"/>
       </label>
       <label>
-        <input type="password" placeholder="密码" v-model="formStatus.password" />
+        <input type="password" placeholder="密码" v-model="formStatus.password"/>
       </label>
       <button class="red" type="button" @click.prevent="submit">登 录</button>
     </form>
   </div>
 </template>
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { login } from '@/api/common'
-import type { FormRules, FormInstance } from 'element-plus'
-import { useCommonStore } from '@/store/modules/common'
-import { ElMessage } from 'element-plus'
+import {reactive, ref} from 'vue'
+import {useRouter} from 'vue-router'
+import {login} from '@/api/common'
+import type {FormRules, FormInstance} from 'element-plus'
+import {useCommonStore} from '@/store/modules/common'
+import {ElMessage} from 'element-plus'
 
 const router = useRouter()
 const store: any = useCommonStore()

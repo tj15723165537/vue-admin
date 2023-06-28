@@ -1,12 +1,12 @@
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import App from './App.vue'
 
 const app = createApp(App)
-import { router } from './router/index'
+import {router} from './router/index'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import './style/index.scss'
-import { createPinia } from 'pinia'
+import {createPinia} from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
@@ -22,9 +22,9 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 
 app
-  .use(ElementPlus, {
-    locale: zhCn
-  })
-  .use(router)
-  .use(pinia)
-  .mount('#app')
+    .use(ElementPlus, {
+      locale: zhCn
+    })
+    .use(router)
+    .use(pinia)
+    .mount('#app')

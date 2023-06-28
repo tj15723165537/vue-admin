@@ -2,14 +2,14 @@
   <div>
     <div class="left">
       <el-icon
-        style="font-size: 24px; color: rgba(0, 0, 0, 0.65); line-height: 60px; cursor: pointer"
-        @click="menuStore.setIsCollapse()"
+          style="font-size: 24px; color: rgba(0, 0, 0, 0.65); line-height: 60px; cursor: pointer"
+          @click="menuStore.setIsCollapse()"
       >
-        <Fold />
+        <Fold/>
       </el-icon>
     </div>
     <div class="userInfo">
-      <img src="../../assets/img/pikaqiu.jpg" />
+      <img src="../../assets/img/pikaqiu.jpg"/>
       <div>
         <button class="logout" @click="handLogout">退出</button>
       </div>
@@ -18,10 +18,10 @@
 </template>
 
 <script lang="ts" setup>
-import { useCommonStore } from '@/store/modules/common'
-import { useMenuStore } from '@/store/modules/menu'
-import { useRouter } from 'vue-router'
-import { ElMessageBox } from 'element-plus/es'
+import {useCommonStore} from '@/store/modules/common'
+import {useMenuStore} from '@/store/modules/menu'
+import {useRouter} from 'vue-router'
+import {ElMessageBox} from 'element-plus/es'
 
 const router = useRouter()
 const commonStore: any = useCommonStore()
@@ -32,11 +32,12 @@ const handLogout = () => {
     cancelButtonText: '取消',
     type: 'warning'
   })
-    .then((res) => {
-      commonStore.removeToken()
-      router.push('/login')
-    })
-    .catch((err) => {})
+      .then((res) => {
+        commonStore.removeToken()
+        router.push('/login')
+      })
+      .catch((err) => {
+      })
 }
 </script>
 
