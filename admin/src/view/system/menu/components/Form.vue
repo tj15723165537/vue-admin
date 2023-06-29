@@ -44,7 +44,6 @@ const formModel = ref()
 let dataForm = ref<MenuForm>({
   name: '',
   title: '',
-  pid: '',
   redirect: '',
   icon: '',
   path: ''
@@ -60,7 +59,7 @@ function createTreeData() {
         return {
           label: item.title,
           value: item.id,
-          children: item.children.map((child) => {
+          children: item.children!.map((child) => {
             return {
               label: child.title,
               value: child.id

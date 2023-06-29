@@ -21,20 +21,14 @@ import {login} from '@/api/common'
 import type {FormRules, FormInstance} from 'element-plus'
 import {useCommonStore} from '@/store/modules/common'
 import {ElMessage} from 'element-plus'
-
+import { LoginForm } from '@/types/common'
 const router = useRouter()
 const store: any = useCommonStore()
-
-interface IformStatus {
-  account: string
-  password: string
-}
-
-const formStatus = reactive<IformStatus>({
+const formStatus = reactive<LoginForm>({
   account: '',
   password: ''
 })
-const rules = reactive<IformStatus>({
+const rules = reactive<LoginForm>({
   account: '请输入账号',
   password: '请输入密码'
 })

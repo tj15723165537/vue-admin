@@ -1,8 +1,7 @@
-import {Employee, EmployeeForm} from '@/types/employee/employee'
-import {UserSearch} from '@/types/system/user'
+import { Employee, EmployeeForm, EmployeeSearch } from '@/types/employee/employee'
 import request from '@/utils/request'
 
-export const getEmployeeList = (data: UserSearch) => {
+export const getEmployeeList = (data: EmployeeSearch) => {
   return request<ResultData<Employee>>({
     url: '/api/employee/list',
     data,

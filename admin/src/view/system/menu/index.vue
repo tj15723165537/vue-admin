@@ -22,7 +22,7 @@ import {delMenu, getMenuList} from '@/api/system/menu'
 import {provide, ref} from 'vue'
 import {Menu} from '@/types/system/menu'
 import {ElMessage, ElMessageBox} from 'element-plus'
-import AddEdit from './components/add-edit.vue'
+import AddEdit from './components/Form.vue'
 
 const dataList = ref<Menu[]>([])
 provide('menuList', dataList)

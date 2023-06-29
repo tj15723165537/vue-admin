@@ -16,7 +16,7 @@
   </el-popover>
 </template>
 <script setup lang="ts">
-import {ComponentInternalInstance, defineEmits, defineProps, getCurrentInstance} from 'vue'
+import {ComponentInternalInstance, getCurrentInstance} from 'vue'
 
 const {
   appContext: {

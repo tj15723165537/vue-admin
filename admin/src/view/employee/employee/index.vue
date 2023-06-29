@@ -36,12 +36,12 @@
         @size-change="sizeChange"
     />
   </div>
-  <add-edit ref="addEditRef" @getList="getList"/>
+  <Add-edit ref="addEditRef" @getList="getList"/>
 </template>
 <script lang="ts" setup>
 import {delEmployee, getEmployeeList} from '@/api/employee/index'
 import {onMounted, reactive, ref} from 'vue'
-import addEdit from './components/add-edit.vue'
+import AddEdit from './components/Form.vue'
 import {ElMessageBox, ElMessage} from 'element-plus'
 import {EmployeeSearch, Employee} from '@/types/employee/employee'
 

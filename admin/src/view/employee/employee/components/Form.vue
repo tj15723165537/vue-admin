@@ -32,10 +32,8 @@ const emit = defineEmits(['getList'])
 const formModel = ref()
 
 let dataForm = ref<EmployeeForm>({
-  id: null,
   name: '',
   phone: '',
-  date: '',
   address: ''
 })
 

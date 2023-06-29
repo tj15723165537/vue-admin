@@ -17,7 +17,6 @@ instance.interceptors.request.use((request) => {
 })
 instance.interceptors.response.use(
     (response) => {
-      globalLoading && globalLoading.close()
       return response
     },
     (error) => {
@@ -58,7 +57,9 @@ const request = <T>(option: RequestOption): Promise<Response<T>> => {
         })
         .catch((err) => {
           reject(err)
-        })
+        }).finally(()=>{
+          globalLoading && globalLoading.close()
+    })
   })
 }
 export default request
