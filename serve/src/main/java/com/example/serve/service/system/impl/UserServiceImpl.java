@@ -2,8 +2,9 @@ package com.example.serve.service.system.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.serve.convert.system.UserConvert;
-import com.example.serve.dto.system.UserDTO;
-import com.example.serve.dto.system.UserPageParamsDTO;
+import com.example.serve.dto.system.user.UserCreateDTO;
+import com.example.serve.dto.system.user.UserPageParamsDTO;
+import com.example.serve.dto.system.user.UserUpdateDTO;
 import com.example.serve.entity.system.User;
 import com.example.serve.exception.BusinessException;
 import com.example.serve.mapper.system.UserMapper;
@@ -36,8 +37,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public void add(UserDTO dto) {
-        User user = userConvert.dto2Entity(dto);
+    public void add(UserCreateDTO dto) {
+        User user = userConvert.createDto2Entity(dto);
         String password = "123456";
         String salt = BCrypt.gensalt();
         String hashedPassword = BCrypt.hashpw(password, salt);
@@ -53,8 +54,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public void update(UserDTO dto) {
-        User user = userConvert.dto2Entity(dto);
+    public void update(UserUpdateDTO dto) {
+        User user = userConvert.updateDto2Entity(dto);
         userMapper.update(user);
     }
 

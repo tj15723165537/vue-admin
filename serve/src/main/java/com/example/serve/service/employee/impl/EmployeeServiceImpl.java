@@ -5,8 +5,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.serve.convert.employee.EmployeeConvert;
-import com.example.serve.dto.employee.EmployeeDTO;
-import com.example.serve.dto.employee.EmployeePageParamsDTO;
+import com.example.serve.dto.employee.employee.EmployeeCreateDTO;
+import com.example.serve.dto.employee.employee.EmployeePageParamsDTO;
+import com.example.serve.dto.employee.employee.EmployeeUpdateDTO;
 import com.example.serve.entity.employee.Employee;
 import com.example.serve.mapper.employee.EmployeeMapper;
 import com.example.serve.service.employee.EmployeeService;
@@ -39,8 +40,8 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
     }
 
     //添加员工
-    public Boolean add(EmployeeDTO dto) {
-        Employee employee = employeeConvert.dto2Entity(dto);
+    public Boolean add(EmployeeCreateDTO dto) {
+        Employee employee = employeeConvert.createDto2Entity(dto);
         Boolean result = this.save(employee);
         return result;
     }
@@ -59,8 +60,8 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
     }
 
     // 修改员工
-    public Boolean update(EmployeeDTO dto) {
-        Employee employee = employeeConvert.dto2Entity(dto);
+    public Boolean update(EmployeeUpdateDTO dto) {
+        Employee employee = employeeConvert.updateDto2Entity(dto);
         Boolean result = this.updateById(employee);
         return result;
     }

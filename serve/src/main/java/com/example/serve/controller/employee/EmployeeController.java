@@ -2,8 +2,9 @@ package com.example.serve.controller.employee;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.serve.convert.employee.EmployeeConvert;
-import com.example.serve.dto.employee.EmployeeDTO;
-import com.example.serve.dto.employee.EmployeePageParamsDTO;
+import com.example.serve.dto.employee.employee.EmployeeCreateDTO;
+import com.example.serve.dto.employee.employee.EmployeePageParamsDTO;
+import com.example.serve.dto.employee.employee.EmployeeUpdateDTO;
 import com.example.serve.entity.employee.Employee;
 import com.example.serve.service.employee.EmployeeService;
 import com.example.serve.utils.PageList;
@@ -11,7 +12,6 @@ import com.example.serve.utils.Response;
 import com.example.serve.vo.employee.EmployeeVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -31,15 +31,8 @@ public class EmployeeController {
     private EmployeeConvert employeeConvert;
 
     @ApiOperation(value = "员工列表")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "page", value = "page", required = true, dataTypeClass = Integer.class),
-            @ApiImplicitParam(name = "size", value = "size", required = true, dataTypeClass = Integer.class),
-            @ApiImplicitParam(name = "name", value = "员工姓名", required = false, dataTypeClass = String.class),
-            @ApiImplicitParam(name = "phone", value = "电话", required = false, dataTypeClass = String.class),
-            @ApiImplicitParam(name = "address", value = "地址", required = false, dataTypeClass = String.class)
-    })
     @GetMapping("/list")
-    public Response<PageList<EmployeeVO>> list(EmployeePageParamsDTO filter) {
+    public Response<PageList<EmployeeVO>> list(@Validated EmployeePageParamsDTO filter) {
         IPage<Employee> ipage = employeeService.getList(filter);
         List<EmployeeVO> employeeVOList = employeeConvert.entitylist2Volist(ipage.getRecords());
         return Response.ok(employeeVOList, ipage.getTotal());
@@ -47,7 +40,7 @@ public class EmployeeController {
 
     @ApiOperation(value = "添加员工")
     @PostMapping("/add")
-    public Response add(@RequestBody @Validated EmployeeDTO dto) {
+    public Response add(@RequestBody @Validated EmployeeCreateDTO dto) {
         boolean result = employeeService.add(dto);
         return Response.ok();
     }
@@ -70,7 +63,7 @@ public class EmployeeController {
 
     @ApiOperation(value = "修改员工")
     @PostMapping("/update")
-    public Response update(@RequestBody @Validated EmployeeDTO dto) {
+    public Response update(@RequestBody @Validated EmployeeUpdateDTO dto) {
         Boolean result = employeeService.update(dto);
         return Response.ok();
     }

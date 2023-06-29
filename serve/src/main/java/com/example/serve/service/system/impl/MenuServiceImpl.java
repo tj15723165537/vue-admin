@@ -1,10 +1,10 @@
 package com.example.serve.service.system.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.serve.convert.system.MenuConvert;
-import com.example.serve.dto.system.MenuDTO;
+import com.example.serve.dto.system.menu.MenuCreateDTO;
+import com.example.serve.dto.system.menu.MenuUpdateDTO;
 import com.example.serve.entity.system.Menu;
 import com.example.serve.exception.BusinessException;
 import com.example.serve.mapper.system.MenuMapper;
@@ -29,12 +29,12 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     }
 
     @Override
-    public void add(MenuDTO menuDTO) {
+    public void add(MenuCreateDTO menuDTO) {
         Menu parentMenu = getBaseMapper().selectById(menuDTO.getPid());
         if (Objects.isNull(parentMenu)) {
             throw new BusinessException("父级菜单不存在");
         }
-        Menu entity = menuConvert.dto2Entity(menuDTO);
+        Menu entity = menuConvert.createDto2Entity(menuDTO);
         getBaseMapper().insert(entity);
     }
 
@@ -54,15 +54,12 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     }
 
     @Override
-    public void update(MenuDTO menuDTO) {
-        if (Objects.isNull(menuDTO.getId())) {
-            throw new BusinessException("菜单id不能为空");
-        }
+    public void update(MenuUpdateDTO menuDTO) {
         Menu parentMenu = getBaseMapper().selectById(menuDTO.getPid());
         if (Objects.isNull(parentMenu) && menuDTO.getPid() != 0) {
             throw new BusinessException("父级菜单不存在");
         }
-        Menu entity = menuConvert.dto2Entity(menuDTO);
+        Menu entity = menuConvert.updateDto2Entity(menuDTO);
         LambdaQueryWrapper<Menu> lambdaQueryWrapper = new LambdaQueryWrapper<Menu>();
         this.update(entity, lambdaQueryWrapper.eq(Menu::getId, menuDTO.getId()));
     }

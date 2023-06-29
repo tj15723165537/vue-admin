@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,11 +26,7 @@ public class LoginController {
 
     @ApiOperation(value = "登录")
     @PostMapping("/login")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "account", value = "账号", required = true, dataTypeClass = String.class),
-            @ApiImplicitParam(name = "password", value = "密码", required = true, dataTypeClass = String.class)
-    })
-    public Response<LoginVO> login(@RequestBody LoginDTO dto){
+    public Response<LoginVO> login(@Validated @RequestBody LoginDTO dto){
         LoginVO data = loginService.login(dto);
         return Response.ok(data);
     }

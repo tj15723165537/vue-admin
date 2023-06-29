@@ -1,8 +1,8 @@
 package com.example.serve.controller.system;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.example.serve.dto.system.UserDTO;
-import com.example.serve.dto.system.UserPageParamsDTO;
+import com.example.serve.dto.system.user.UserCreateDTO;
+import com.example.serve.dto.system.user.UserPageParamsDTO;
+import com.example.serve.dto.system.user.UserUpdateDTO;
 import com.example.serve.service.system.UserService;
 import com.example.serve.utils.PageList;
 import com.example.serve.utils.Response;
@@ -10,6 +10,7 @@ import com.example.serve.vo.system.UserVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -29,7 +30,7 @@ public class UserController {
 
     @PostMapping("/add")
     @ApiOperation("添加用户")
-    public Response add(@RequestBody UserDTO dto){
+    public Response add(@Validated @RequestBody UserCreateDTO dto){
         userService.add(dto);
         return Response.okMsg("添加成功");
     }
@@ -43,7 +44,7 @@ public class UserController {
 
     @PostMapping("/update")
     @ApiOperation("编辑用户")
-    public Response update(@RequestBody UserDTO dto){
+    public Response update(@Validated @RequestBody UserUpdateDTO dto){
         userService.update(dto);
         return Response.okMsg("修改成功");
     }

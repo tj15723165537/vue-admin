@@ -1,7 +1,7 @@
 package com.example.serve.mapper.system;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.serve.dto.system.UserPageParamsDTO;
+import com.example.serve.dto.system.user.UserPageParamsDTO;
 import com.example.serve.entity.system.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

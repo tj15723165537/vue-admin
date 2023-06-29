@@ -1,7 +1,8 @@
 package com.example.serve.controller.system;
 
 
-import com.example.serve.dto.system.MenuDTO;
+import com.example.serve.dto.system.menu.MenuCreateDTO;
+import com.example.serve.dto.system.menu.MenuUpdateDTO;
 import com.example.serve.service.system.MenuService;
 import com.example.serve.utils.Response;
 import com.example.serve.vo.system.MenuVO;
@@ -29,15 +30,7 @@ public class MenuController {
 
     @PostMapping("/add")
     @ApiOperation("新增菜单")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "path", value = "菜单路径", required = true, dataTypeClass = String.class),
-            @ApiImplicitParam(name = "name", value = "路由名称", required = true, dataTypeClass = String.class),
-            @ApiImplicitParam(name = "redirect", value = "重定向路径", required = true, dataTypeClass = String.class),
-            @ApiImplicitParam(name = "title", value = "菜单标题", required = true, dataTypeClass = String.class),
-            @ApiImplicitParam(name = "icon", value = "菜单图标", required = true, dataTypeClass = String.class),
-            @ApiImplicitParam(name = "pid", value = "父级菜单", required = true, dataTypeClass = Long.class)
-    })
-    public Response add(@RequestBody @Validated MenuDTO menuDTO){
+    public Response add(@RequestBody @Validated MenuCreateDTO menuDTO){
         menuService.add(menuDTO);
         return Response.ok();
     }
@@ -51,16 +44,7 @@ public class MenuController {
 
     @PostMapping("/update")
     @ApiOperation("编辑菜单")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "菜单id", required = true, dataTypeClass = String.class),
-            @ApiImplicitParam(name = "path", value = "菜单路径", required = true, dataTypeClass = String.class),
-            @ApiImplicitParam(name = "name", value = "路由名称", required = true, dataTypeClass = String.class),
-            @ApiImplicitParam(name = "redirect", value = "重定向路径", required = true, dataTypeClass = String.class),
-            @ApiImplicitParam(name = "title", value = "菜单标题", required = true, dataTypeClass = String.class),
-            @ApiImplicitParam(name = "icon", value = "菜单图标", required = true, dataTypeClass = String.class),
-            @ApiImplicitParam(name = "pid", value = "父级菜单", required = true, dataTypeClass = Long.class)
-    })
-    public Response update(@RequestBody @Validated MenuDTO menuDTO){
+    public Response update(@RequestBody @Validated MenuUpdateDTO menuDTO){
         menuService.update(menuDTO);
         return Response.ok();
     }
