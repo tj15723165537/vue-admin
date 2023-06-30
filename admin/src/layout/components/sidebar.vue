@@ -47,14 +47,14 @@
 </template>
 
 <script setup lang="ts">
-import {getMenuList} from '@/api/system/index'
-import {onMounted, ref} from 'vue'
-import {useRouter, useRoute, RouteRecordRaw} from 'vue-router'
-import {useMenuStore} from '@/store/modules/menu'
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { useMenuStore } from '@/store/modules/menu'
+import { Menu } from '@/types/system/menu'
 
 const store = useMenuStore()
 const route = useRoute()
-let dataList = ref<RouteRecordRaw[]>()
+let dataList = ref<Menu[]>()
 dataList.value = store.menuList
 </script>
 <style lang="scss" scoped>

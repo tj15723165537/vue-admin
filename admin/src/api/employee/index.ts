@@ -25,7 +25,7 @@ export const editEmployee = (data: EmployeeForm) => {
   })
 }
 
-export const getEmployeeDetail = (id: number) => {
+export const getEmployeeDetail = (id: string) => {
   return request<Employee>({
     url: `/api/employee/getEmployeeById/${id}`
   })

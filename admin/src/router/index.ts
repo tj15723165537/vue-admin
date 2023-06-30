@@ -60,7 +60,7 @@ router.beforeEach(async (to, form, next) => {
 
 function createRoutes(item: Menu) {
   const routes: RouteRecordRaw = {
-    path: item.path,
+    path: item.path!,
     redirect: item.redirect,
     component: () => import('@/layout/index.vue'),
     meta: {
@@ -71,8 +71,8 @@ function createRoutes(item: Menu) {
   }
   if (item.children?.length! > 0) {
     item.children!.map((child) => {
-      const childRoutes = {
-        path: child.path,
+      const childRoutes:RouteRecordRaw = {
+        path: child.path!,
         component: () => import(`../view${child.path}/index.vue`),
         meta: {
           title: child.title,

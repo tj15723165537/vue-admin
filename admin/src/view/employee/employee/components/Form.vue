@@ -37,7 +37,7 @@ let dataForm = ref<EmployeeForm>({
   address: ''
 })
 
-const init = async (id: number) => {
+const init = async (id: string) => {
   visible.value = true
   dataForm.value.id = id
   if (id) {
