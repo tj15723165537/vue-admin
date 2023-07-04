@@ -14,8 +14,6 @@ interface Response<T> {
   code: number
   data: T
   msg?: string
-  token?: string
-  total?: number
 }
 
 interface ResultData<T> {
