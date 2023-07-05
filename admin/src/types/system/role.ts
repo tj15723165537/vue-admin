@@ -23,3 +23,32 @@ export interface RoleVO {
    */
   remark?: string;
 }
+
+export interface RoleSearch extends PageParams {
+  /**
+   * 角色名
+   */
+  name?: string;
+}
+
+export interface RoleAssignForm {
+  /**
+   * 角色id
+   */
+  id: string,
+  /**
+   * 菜单集合
+   */
+  menuList: string[]
+}
+
+export interface RoleMenuList {
+  /**
+   * 角色已有权限菜单列表
+   */
+  roleMenuList: string[],
+  /**
+   * 所有菜单列表
+   */
+  menuList: any[]
+}

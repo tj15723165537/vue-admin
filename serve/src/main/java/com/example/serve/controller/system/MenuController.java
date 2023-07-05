@@ -37,6 +37,7 @@ public class MenuController {
 
     @GetMapping("/delete/{id}")
     @ApiOperation("删除菜单")
+    @ApiImplicitParam(name = "id", value = "id", required = true, dataTypeClass = Long.class)
     public Response delete(@PathVariable Long id){
         menuService.delete(id);
         return Response.ok();
@@ -51,6 +52,7 @@ public class MenuController {
 
     @GetMapping("/detail/{id}")
     @ApiOperation("菜单详情")
+    @ApiImplicitParam(name = "id", value = "id", required = true, dataTypeClass = Long.class)
     public Response<MenuVO> detail(@PathVariable Long id){
         MenuVO menuVO = menuService.getDetail(id);
         return Response.ok(menuVO);

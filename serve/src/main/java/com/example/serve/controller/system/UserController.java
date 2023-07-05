@@ -8,6 +8,7 @@ import com.example.serve.utils.PageList;
 import com.example.serve.utils.Response;
 import com.example.serve.vo.system.UserVO;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -37,6 +38,7 @@ public class UserController {
 
     @GetMapping("/detail/{id}")
     @ApiOperation("用户详情")
+    @ApiImplicitParam(name = "id", value = "id", required = true, dataTypeClass = Long.class)
     public Response<UserVO> getDetail (@PathVariable Long id){
         UserVO userVO = userService.getById(id);
         return Response.ok(userVO);
@@ -51,6 +53,7 @@ public class UserController {
 
     @GetMapping("/delete/{id}")
     @ApiOperation("删除用户")
+    @ApiImplicitParam(name = "id", value = "id", required = true, dataTypeClass = Long.class)
     public Response delete(@PathVariable Long id){
         userService.delete(id);
         return Response.okMsg("删除成功");
@@ -58,6 +61,7 @@ public class UserController {
 
     @GetMapping("/updateStatus/{id}")
     @ApiOperation("禁用启用用户")
+    @ApiImplicitParam(name = "id", value = "id", required = true, dataTypeClass = Long.class)
     public Response updateStatus(@PathVariable Long id){
         userService.updateStatus(id);
         return Response.okMsg("修改成功");

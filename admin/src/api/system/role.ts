@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 import {User} from '@/types/system/user'
-import { RoleVO } from '@/types/system/role'
+import {RoleMenuList, RoleVO} from '@/types/system/role'
 
 export const getRoleList = (data: object) => {
   return request<ResultData<RoleVO>>({
@@ -18,28 +18,36 @@ export const addRole = (data: User) => {
   })
 }
 
-// export const editUser = (data: User) => {
-//   return request({
-//     url: '/api/user/update',
-//     method: 'post',
-//     data
-//   })
-// }
-//
-// export const getUserDetail = (id: number) => {
-//   return request<User>({
-//     url: `/api/user/detail/${id}`
-//   })
-// }
-//
-// export const delUser = (id: number) => {
-//   return request({
-//     url: `/api/user/delete/${id}`
-//   })
-// }
-//
-// export const updateUserStatus = (id: number) => {
-//   return request({
-//     url: `/api/user/updateStatus/${id}`
-//   })
-// }
+export const editRole = (data: RoleVO) => {
+  return request({
+    url: '/api/role/update',
+    method: 'post',
+    data
+  })
+}
+
+export const getRoleDetail = (id: number) => {
+  return request<RoleVO>({
+    url: `/api/role/detail/${id}`
+  })
+}
+
+export const delRole = (id: string) => {
+  return request({
+    url: `/api/role/delete/${id}`
+  })
+}
+
+export const assignRole = (data: { menuList: string[] }) => {
+  return request({
+    url: `/api/role/assign`,
+    method: 'post',
+    data
+  })
+}
+
+export const getRoleMenuList = (id: string) => {
+  return request<RoleMenuList>({
+    url: `/api/role/roleMenuList/${id}`
+  })
+}
