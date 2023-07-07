@@ -87,7 +87,6 @@ const crud = new Crud<User>({
   listQuery,
   tempFrom: {
     account: '',
-    // password: '',
     status: 1,
     role:''
   }
