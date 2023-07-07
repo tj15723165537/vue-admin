@@ -4,11 +4,15 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.serve.convert.system.UserConvert;
 import com.example.serve.dto.auth.LoginDTO;
+import com.example.serve.entity.system.Role;
 import com.example.serve.entity.system.RoleMenu;
 import com.example.serve.entity.system.User;
+import com.example.serve.entity.system.UserRole;
 import com.example.serve.exception.BusinessException;
 import com.example.serve.mapper.auth.LoginMapper;
+import com.example.serve.mapper.system.RoleMapper;
 import com.example.serve.mapper.system.RoleMenuMapper;
+import com.example.serve.mapper.system.UserRoleMapper;
 import com.example.serve.service.auth.LoginService;
 import com.example.serve.service.system.MenuService;
 import com.example.serve.utils.JwtUtil;
@@ -34,6 +38,12 @@ public class LoginServiceImpl extends ServiceImpl<LoginMapper, User> implements 
 
     @Resource
     private RoleMenuMapper roleMenuMapper;
+
+    @Resource
+    private RoleMapper roleMapper;
+
+    @Resource
+    private UserRoleMapper  userRoleMapper;
 
     @Override
     public LoginVO login(LoginDTO dto) {
@@ -66,10 +76,13 @@ public class LoginServiceImpl extends ServiceImpl<LoginMapper, User> implements 
     }
 
     @Override
-    public List<MenuVO> getAuthList() {
+    public List<MenuVO> getAuthList(Long id) {
         List<MenuVO> list = menuService.getList();
-        //TODO id写死的
-        List<RoleMenu> roleMenuList = roleMenuMapper.selectList(new LambdaQueryWrapper<RoleMenu>().eq(RoleMenu::getRoleId, 1654309432060907526L));
+        UserRole userRole = userRoleMapper.selectOne(new LambdaQueryWrapper<UserRole>().eq(UserRole::getUserId, id));
+        if(null == userRole) {
+            throw new BusinessException("该用户没有分配角色");
+        }
+        List<RoleMenu> roleMenuList = roleMenuMapper.selectList(new LambdaQueryWrapper<RoleMenu>().eq(RoleMenu::getRoleId, userRole.getRoleId()));
         List<Long> menuList = roleMenuList.stream().map(item -> item.getMenuId()).collect(Collectors.toList());
         List<MenuVO> collect = list.stream().filter(item -> menuList.contains(item.getId())).collect(Collectors.toList());
         return collect;

@@ -41,6 +41,13 @@ public class RoleController {
         return Response.ok(roleVOS, list.getTotal());
     }
 
+    @GetMapping("/allList")
+    @ApiOperation("获取所有角色")
+    public Response<List<RoleVO>> list() {
+        List<RoleVO> list = roleService.getAllList();
+        return Response.ok(list);
+    }
+
     @PostMapping("/add")
     @ApiOperation("新建角色")
     public Response add(@RequestBody RoleCreateDTO dto) {

@@ -32,4 +32,6 @@ public interface RoleService extends IService<Role> {
     void assign(RoleAssignDTO dto);
 
     RoleMenuListVO getRoleMenuList(Long id);
+
+    List<RoleVO> getAllList();
 }

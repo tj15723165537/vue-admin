@@ -45,6 +45,11 @@
       <el-form-item label="账号" prop="account">
         <el-input v-model="crud.tempFrom.account"/>
       </el-form-item>
+      <el-form-item label="角色" prop="role">
+        <el-radio-group v-model="crud.tempFrom.role">
+          <el-radio :label="item.id" v-for='item in roleList' size="large">{{item.name}}</el-radio>
+        </el-radio-group>
+      </el-form-item>
       <el-form-item label="状态">
         <el-switch v-model="crud.tempFrom.status" :active-value="1" :inactive-value="0"/>
       </el-form-item>
@@ -56,11 +61,14 @@
   </el-dialog>
 </template>
 <script lang="ts" setup>
-import {addUser, delUser, editUser, getUserDetail, getUserList, updateUserStatus} from '@/api/system/user'
-import {onMounted, reactive, ref, watch} from 'vue'
-import {Crud} from '@/hooks/crud'
-import {ElMessage} from 'element-plus/es'
-import {UserSearch, User} from '@/types/system/user'
+import { addUser, delUser, editUser, getUserDetail, getUserList, updateUserStatus } from '@/api/system/user'
+import { watch,ref } from 'vue'
+import { Crud } from '@/hooks/crud'
+import { ElMessage } from 'element-plus/es'
+import { User, UserSearch } from '@/types/system/user'
+import { getAllRoleList } from '@/api/system/role'
+import { RoleVO } from '@/types/system/role'
+import { log } from 'echarts/types/src/util/log'
 
 const listQuery: UserSearch = {
   account: undefined,
@@ -80,7 +88,8 @@ const crud = new Crud<User>({
   tempFrom: {
     account: '',
     // password: '',
-    status: 1
+    status: 1,
+    role:''
   }
 })
 crud.getList()
@@ -95,8 +104,16 @@ watch(
 const updateStatus = (id: number) => {
   updateUserStatus(id).then((res) => {
     ElMessage.success(res.msg || '操作成功')
+  }).catch((err)=>{
+    crud.getList()
   })
 }
+const roleList = ref<RoleVO[]>()
+const getRoleList = async ()=>{
+  const {data}  = await getAllRoleList()
+  roleList.value = data
+}
+getRoleList()
 </script>
 <style lang="scss" scoped>
 .page {

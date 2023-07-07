@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 @Data
 public class UserVO {
 
@@ -19,6 +20,9 @@ public class UserVO {
 
     @ApiModelProperty(value = "状态")
     private Integer status;
+
+    @ApiModelProperty(value = "角色")
+    private Long role;
 
     @ApiModelProperty(value = "创建时间")
     @JsonFormat(

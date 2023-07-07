@@ -2,7 +2,7 @@ package com.example.serve.dto.system.role;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * 角色添加
@@ -12,9 +12,8 @@ public class RoleUpdateDTO {
     /**
      * id
      */
-    @NotBlank(message =  "id不能为空")
-    private String id;
-
+    @NotNull(message =  "id不能为空")
+    private Long id;
     /**
      * 备注
      */

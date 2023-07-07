@@ -11,6 +11,7 @@ import com.example.serve.dto.system.role.RolePageParamsDTO;
 import com.example.serve.dto.system.role.RoleUpdateDTO;
 import com.example.serve.entity.employee.Employee;
 import com.example.serve.entity.system.Role;
+import com.example.serve.enums.WhetherEnum;
 import com.example.serve.exception.BusinessException;
 import com.example.serve.mapper.system.RoleMenuMapper;
 import com.example.serve.service.system.MenuService;
@@ -54,6 +55,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         Role role = new Role();
         role.setName(dto.getName());
         role.setRemark(dto.getRemark());
+        role.setIsAdmin(WhetherEnum.NO.code());
         roleMapper.insert(role);
     }
 
@@ -73,7 +75,11 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         if (null == id) {
             throw new BusinessException("id不能为空");
         }
+        if(isAdmin(id)){
+            throw new BusinessException("不能删除管理员角色");
+        }
         roleMapper.deleteById(id);
+        roleMenuMapper.delete(new LambdaQueryWrapper<RoleMenu>().eq(RoleMenu::getRoleId,id));
     }
 
     @Override
@@ -87,7 +93,11 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
 
     @Override
     public void update(RoleUpdateDTO dto) {
+        if(isAdmin(dto.getId())){
+            throw new BusinessException("不能修改管理员角色");
+        }
         Role role = roleConvert.dto2Entity(dto);
+        role.setIsAdmin(WhetherEnum.NO.code());
         roleMapper.updateById(role);
     }
 
@@ -96,6 +106,9 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         Role role = roleMapper.selectById(dto.getId());
         if (Objects.isNull(role)) {
             throw new BusinessException("角色不存在");
+        }
+        if(isAdmin(dto.getId())){
+            throw new BusinessException("不能修改管理员权限");
         }
         roleMenuMapper.delete(new LambdaQueryWrapper<RoleMenu>().eq(RoleMenu::getRoleId, dto.getId()));
         for (Long menuId : dto.getMenuList()) {
@@ -119,6 +132,17 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         roleMenuListVO.setRoleMenuList(collect);
         roleMenuListVO.setMenuList(list);
         return roleMenuListVO;
+    }
+
+    @Override
+    public List<RoleVO> getAllList() {
+        List<Role> roleList = roleMapper.selectList(null);
+        return roleConvert.entityList2VoList(roleList);
+    }
+
+    private Boolean isAdmin(Long id){
+        Role role = roleMapper.selectById(id);
+        return role.getIsAdmin().equals(WhetherEnum.YES.code());
     }
 }
 

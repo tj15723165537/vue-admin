@@ -49,8 +49,8 @@ const request = <T>(option: RequestOption): Promise<Response<T>> => {
                 router.push('/login')
               }
               const errMsg = res.data.msg || res.data.message || '意料之外的错误'
-              return ElMessage.error(errMsg)
-              reject(errMsg)
+              ElMessage.error(errMsg)
+              reject(errMsg || '11')
             }
             resolve(res.data)
           }

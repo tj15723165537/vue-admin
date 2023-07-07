@@ -11,5 +11,5 @@ import java.util.List;
 public interface LoginService extends IService<User> {
     LoginVO login(LoginDTO dto);
 
-    List<MenuVO> getAuthList();
+    List<MenuVO> getAuthList(Long id);
 }

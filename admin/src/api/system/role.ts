@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 import {User} from '@/types/system/user'
-import {RoleMenuList, RoleVO} from '@/types/system/role'
+import { RoleMenuList, RoleSearch, RoleVO } from '@/types/system/role'
 
-export const getRoleList = (data: object) => {
+export const getRoleList = (data: RoleSearch) => {
   return request<ResultData<RoleVO>>({
     url: '/api/role/list',
     data,
@@ -49,5 +49,11 @@ export const assignRole = (data: { menuList: string[] }) => {
 export const getRoleMenuList = (id: string) => {
   return request<RoleMenuList>({
     url: `/api/role/roleMenuList/${id}`
+  })
+}
+
+export const getAllRoleList = () => {
+  return request<RoleVO[]>({
+    url: `/api/role/allList`
   })
 }

@@ -27,6 +27,10 @@ public class Role implements Serializable {
      */
     private String remark;
     /**
+     * 是否是管理员 0 不是 1 是
+     */
+    private Integer isAdmin;
+    /**
      * 创建时间
      */
     @TableField(fill =  FieldFill.INSERT)

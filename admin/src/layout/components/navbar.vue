@@ -34,6 +34,7 @@ const handLogout = () => {
   })
       .then((res) => {
         commonStore.removeToken()
+        menuStore.setAsyncRoutestMark(false)
         router.push('/login')
       })
       .catch((err) => {

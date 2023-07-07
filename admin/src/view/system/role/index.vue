@@ -32,7 +32,7 @@
 
   <el-dialog v-model='crud.tempFrom.showModel' title='新增' width='400px'>
     <el-form :model='crud.tempFrom' ref='formModel' label-width='80px' :rules='rules'>
-      <el-form-item label='用户名' prop='name' required>
+      <el-form-item label='角色名' prop='name' required>
         <el-input v-model='crud.tempFrom.name' :disabled='crud.tempFrom.id!==null'/>
       </el-form-item>
       <el-form-item label='备注' prop='remark'>
