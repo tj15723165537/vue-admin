@@ -72,7 +72,7 @@ const submit = async () => {
       oldPassword: dataForm.value.oldPassword,
       newPassword: dataForm.value.newPassword
     }
-    resetPassword(dataForm.value).then((res) => {
+    resetPassword(data).then((res) => {
       ElMessage.success('操作成功')
       visible.value = false
     })

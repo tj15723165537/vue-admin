@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <div class="title">{{ store.isCollapse ? 'EMP' : 'EMPOLYEE' }}</div>
+    <div class="title">{{ store.isCollapse ? 'A' : 'ADMIN' }}</div>
     <el-menu
         class="el-menu-vertical-demo"
         :unique-opened="true"

@@ -1,37 +1,37 @@
 <template>
-  <el-dialog v-model="visible" :title="title" width="400px">
-    <el-form :model="dataForm" ref="formModel" label-width="100px">
-      <el-form-item label="父级菜单" prop="pid">
-        <el-tree-select v-model="dataForm.pid" :data="treeMenuList" check-strictly :render-after-expand="false"/>
+  <el-dialog v-model='visible' :title='title' width='400px'>
+    <el-form :model='dataForm' ref='formModel' label-width='100px'>
+      <el-form-item label='父级菜单' prop='pid'>
+        <el-tree-select v-model='dataForm.pid' :data='treeMenuList' check-strictly :render-after-expand='false' />
       </el-form-item>
-      <el-form-item label="菜单标题" prop="title">
-        <el-input v-model="dataForm.title"/>
+      <el-form-item label='菜单标题' prop='title'>
+        <el-input v-model='dataForm.title' />
       </el-form-item>
-      <el-form-item label="路由名称" prop="name">
-        <el-input v-model="dataForm.name"/>
+      <el-form-item label='路由名称' prop='name'>
+        <el-input v-model='dataForm.name' />
       </el-form-item>
-      <el-form-item label="菜单路径" prop="path">
-        <el-input v-model="dataForm.path"/>
+      <el-form-item label='菜单路径' prop='path'>
+        <el-input v-model='dataForm.path' />
       </el-form-item>
-      <el-form-item label="重定向路径" prop="redirect">
-        <el-input v-model="dataForm.redirect"/>
+      <el-form-item label='重定向路径' prop='redirect'>
+        <el-input v-model='dataForm.redirect' />
       </el-form-item>
-      <el-form-item label="菜单图标" prop="icon">
-        <Icon-picker v-model="dataForm.icon"></Icon-picker>
+      <el-form-item label='菜单图标' prop='icon'>
+        <Icon-picker v-model='dataForm.icon'></Icon-picker>
       </el-form-item>
       <el-form-item>
-        <el-button @click="visible = false">取消</el-button>
-        <el-button type="primary" @click="submit">确定</el-button>
+        <el-button @click='visible = false'>取消</el-button>
+        <el-button type='primary' @click='submit'>确定</el-button>
       </el-form-item>
     </el-form>
   </el-dialog>
 </template>
-<script lang="ts" setup>
-import {inject, ref, Ref} from 'vue'
-import {addEmployee, editEmployee, getEmployeeDetail} from '@/api/employee'
-import {ElMessage} from 'element-plus'
-import {Menu, MenuForm} from '@/types/system/menu'
-import {addMenu, getMenuDetail, updateMenu} from '@/api/system/menu'
+<script lang='ts' setup>
+import { inject, ref, Ref } from 'vue'
+import { addEmployee, editEmployee, getEmployeeDetail } from '@/api/employee'
+import { ElMessage } from 'element-plus'
+import { Menu, MenuForm } from '@/types/system/menu'
+import { addMenu, getMenuDetail, updateMenu } from '@/api/system/menu'
 import IconPicker from '@/components/IconPicker/index.vue'
 
 const menuList: Ref<Menu[]> = inject('menuList')!
