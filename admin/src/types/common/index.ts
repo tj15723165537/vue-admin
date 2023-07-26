@@ -26,3 +26,10 @@ export interface LoginResult {
    */
   userInfo?: User;
 }
+
+
+export interface ResetPasswordForm {
+  oldPassword?: string
+  newPassword?: string
+  confirmNewPassword?: string
+}

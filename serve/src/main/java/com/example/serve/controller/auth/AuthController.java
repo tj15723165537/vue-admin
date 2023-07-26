@@ -1,7 +1,8 @@
 package com.example.serve.controller.auth;
 
 import com.example.serve.dto.auth.LoginDTO;
-import com.example.serve.service.auth.LoginService;
+import com.example.serve.dto.auth.ResetPasswordDTO;
+import com.example.serve.service.auth.AuthService;
 import com.example.serve.utils.JwtUtil;
 import com.example.serve.utils.Response;
 import com.example.serve.vo.auth.LoginVO;
@@ -16,23 +17,31 @@ import java.util.List;
 
 @RestController
 @Api(tags = "登录")
-public class LoginController {
+public class AuthController {
 
     @Autowired
-    private LoginService loginService;
+    private AuthService authService;
 
     @ApiOperation(value = "登录")
     @PostMapping("/login")
-    public Response<LoginVO> login(@Validated @RequestBody LoginDTO dto){
-        LoginVO data = loginService.login(dto);
+    public Response<LoginVO> login(@Validated @RequestBody LoginDTO dto) {
+        LoginVO data = authService.login(dto);
         return Response.ok(data);
     }
 
     @GetMapping("/auth")
     @ApiOperation("已有菜单权限列表")
-    public Response<MenuVO[]> getAuthList(@RequestHeader("Authorization") String jwtToken){
+    public Response<MenuVO[]> getAuthList(@RequestHeader("Authorization") String jwtToken) {
         Long currentUserId = JwtUtil.getUserId(jwtToken);
-        List<MenuVO> authList = loginService.getAuthList(currentUserId);
+        List<MenuVO> authList = authService.getAuthList(currentUserId);
         return Response.ok(authList);
+    }
+
+    @PostMapping("/resetPassword")
+    @ApiOperation("修改密码")
+    public Response resetPassword(@RequestBody @Validated ResetPasswordDTO dto, @RequestHeader("Authorization") String jwtToken) {
+        Long currentUserId = JwtUtil.getUserId(jwtToken);
+        authService.resetPassword(dto, currentUserId);
+        return Response.ok();
     }
 }
