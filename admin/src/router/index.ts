@@ -58,6 +58,8 @@ router.beforeEach(async (to, form, next) => {
   }
 })
 
+// 首先把你需要动态路由的组件地址全部获取
+let modules = import.meta.glob('../view/**/*.vue')
 function createRoutes(item: Menu) {
   const routes: RouteRecordRaw = {
     path: item.path!,
@@ -73,7 +75,8 @@ function createRoutes(item: Menu) {
     item.children!.map((child) => {
       const childRoutes:RouteRecordRaw = {
         path: child.path!,
-        component: () => import(`../view${child.path}/index.vue`),
+        // component: () => import(`../view${child.path}/index.vue`),
+        component: modules[`../view${child.path}/index.vue`],
         meta: {
           title: child.title,
           icon: child.icon
