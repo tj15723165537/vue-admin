@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : mysql
+ Source Server         : localhost
  Source Server Type    : MySQL
  Source Server Version : 80032
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 80032
  File Encoding         : 65001
 
- Date: 07/07/2023 16:27:21
+ Date: 06/09/2023 14:22:53
 */
 
 SET NAMES utf8mb4;
@@ -67,7 +67,7 @@ CREATE TABLE `menu`  (
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1676146630513209347 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1676146630513209346 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of menu
@@ -90,7 +90,7 @@ CREATE TABLE `role`  (
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `is_admin` tinyint NOT NULL COMMENT '是否是管理员 0 不是 1 是',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1654309432060907528 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色管理' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1654309432060907530 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色管理' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of role
@@ -109,7 +109,7 @@ CREATE TABLE `role_menu`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `role_id`(`role_id` ASC) USING BTREE,
   INDEX `menu_id`(`menu_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1659430757938009164 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色菜单关联表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1659430757938009183 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色菜单关联表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of role_menu
@@ -135,13 +135,13 @@ CREATE TABLE `user`  (
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1659043520342994947 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1659043520342994953 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (1, 'admin', '$2a$10$m2zrdFqwOVPxvPWR0BdXPuNs27qZuHu4.ssfwKKjTlBMcDzK/zYFK', 1, '2023-07-07 15:08:49', '2023-07-07 16:11:54');
-INSERT INTO `user` VALUES (1659043520342994952, 'tj', '$2a$10$r6Ta3Kap6h/jcnqRvE89/O8FInwGv6/i3a/u0Jl5gypB1eOlNcvMm', 1, '2023-07-07 15:25:40', '2023-07-07 16:24:33');
+INSERT INTO `user` VALUES (1659043520342994952, 'tj', '$2a$10$cPuxS6yvFc.QWSVLaOU87egDd8SHpc/slCOL8ySPiI8pJoBE6efYG', 1, '2023-07-07 15:25:40', '2023-07-26 11:12:18');
 
 -- ----------------------------
 -- Table structure for user_role
