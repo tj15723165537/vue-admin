@@ -1,5 +1,5 @@
-import {ElMessage, ElMessageBox} from 'element-plus'
-import {reactive} from 'vue'
+import { ElMessage, ElMessageBox } from "element-plus"
+import { reactive } from "vue"
 
 export interface IcrudModel {
   rowIdText?: string // 所有的crud操作的是哪一个字段
@@ -47,38 +47,38 @@ export class Crud<T> {
 
   constructor(obj: IcrudModel) {
     this.pagination = reactive({
-      position: ['bottomRight '],
+      position: ["bottomRight "],
       showSizeChanger: true,
       showQuickJumper: true,
       total: 0,
       size: 10,
       page: 1,
       showTotal: (total: number) => `共 ${total} 条数据`,
-      sizeOptions: ['10', '20', '50', '100'],
+      sizeOptions: ["10", "20", "50", "100"],
       onChange: (page: number, size: number) => {
         this.pagination.page = page
         this.pagination.size = size
         this.getList(this.pagination)
-      }
+      },
     })
 
     // 表格数据
     this.data = reactive({
-      list: obj.list || []
+      list: obj.list || [],
     })
 
-    this.rowIdText = obj.rowIdText || 'id'
+    this.rowIdText = obj.rowIdText || "id"
     this.apiList = obj.apiList
     this.success = obj.success
     this.fail = obj.fail
 
     // 请求参数
-    this.listQuery = reactive({...obj.listQuery})
-    this.listQueryCopy = {...obj.listQuery}
+    this.listQuery = reactive({ ...obj.listQuery })
+    this.listQueryCopy = { ...obj.listQuery }
 
     // 弹窗展示内容
-    this.tempFrom = reactive({showModel: false, ...obj.tempFrom})
-    this.tempCopy = {showModel: false, ...obj.tempFrom}
+    this.tempFrom = reactive({ showModel: false, ...obj.tempFrom })
+    this.tempCopy = { showModel: false, ...obj.tempFrom }
   }
 
   // 获取数据
@@ -87,7 +87,7 @@ export class Crud<T> {
       this.listQuery.size = page.size || 10
       this.listQuery.page = page.page || 1
     }
-    return this.apiList['L']!(this.listQuery).then((res: Response<ResultData<T>>) => {
+    return this.apiList["L"]!(this.listQuery).then((res: Response<ResultData<T>>) => {
       if (res.code === 200) {
         this.data.list = res.data.content
         // this.data.list = expand && expand.list ? res.data[expand.list] : res.data
@@ -113,24 +113,24 @@ export class Crud<T> {
 
   // 添加修改数据
   addEditItem() {
-    let params = {...this.tempFrom}
+    let params = { ...this.tempFrom }
     delete params.showModel
     if (!params.id) {
       delete params.id
-      return this.apiList['C']!(params).then((res: any) => {
+      return this.apiList["C"]!(params).then((res: any) => {
         if (res.code === 200) {
           this.tempFrom.showModel = false
           this.getList()
-          ElMessage.success('添加成功')
+          ElMessage.success("添加成功")
           return res
         }
       })
     } else {
-      return this.apiList['U']!(params).then((res: any) => {
+      return this.apiList["U"]!(params).then((res: any) => {
         if (res.code === 200) {
           this.tempFrom.showModel = false
           this.getList()
-          ElMessage.success('修改成功')
+          ElMessage.success("修改成功")
           return res
         }
       })
@@ -142,23 +142,22 @@ export class Crud<T> {
    * 删除数据
    */
   deleteItem(id: number) {
-    ElMessageBox.confirm('您确定删除这一项吗？', '警告', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'warning'
+    ElMessageBox.confirm("您确定删除这一项吗？", "警告", {
+      confirmButtonText: "确定",
+      cancelButtonText: "取消",
+      type: "warning",
     })
-        .then(async (res) => {
-          this.apiList['D']!(id).then((res: any) => {
-            if (res.code === 200) {
-              this.getList()
-              ElMessage.success('删除成功!')
-            } else {
-              ElMessage.error('删除失败!')
-            }
-          })
+      .then(async (res) => {
+        this.apiList["D"]!(id).then((res: any) => {
+          if (res.code === 200) {
+            this.getList()
+            ElMessage.success("删除成功!")
+          } else {
+            ElMessage.error("删除失败!")
+          }
         })
-        .catch(() => {
-        })
+      })
+      .catch(() => {})
   }
 
   // 取消
@@ -190,9 +189,9 @@ export class Crud<T> {
   //
   getDetail(row: any) {
     return new Promise((resolve, reject) => {
-      if (this.apiList['R']!) {
+      if (this.apiList["R"]!) {
         // 获取详情
-        this.apiList['R']!(row[this.rowIdText]).then((res: any) => {
+        this.apiList["R"]!(row[this.rowIdText]).then((res: any) => {
           let temp = res.data
           resolve(temp)
         })

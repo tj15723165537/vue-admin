@@ -5,32 +5,32 @@
         <h1>LOGIN</h1>
       </div>
       <label>
-        <input type="text" placeholder="账号" v-model="formStatus.account"/>
+        <input type="text" placeholder="账号" v-model="formStatus.account" />
       </label>
       <label>
-        <input type="password" placeholder="密码" v-model="formStatus.password"/>
+        <input type="password" placeholder="密码" v-model="formStatus.password" />
       </label>
       <button class="red" type="button" @click.prevent="submit">登 录</button>
     </form>
   </div>
 </template>
 <script lang="ts" setup>
-import {reactive, ref} from 'vue'
-import {useRouter} from 'vue-router'
-import {login} from '@/api/common'
-import type {FormRules, FormInstance} from 'element-plus'
-import {useCommonStore} from '@/store/modules/common'
-import {ElMessage} from 'element-plus'
-import { LoginForm } from '@/types/common'
+import { reactive, ref } from "vue"
+import { useRouter } from "vue-router"
+import { login } from "@/api/common"
+import type { FormRules, FormInstance } from "element-plus"
+import { useCommonStore } from "@/store/modules/common"
+import { ElMessage } from "element-plus"
+import { LoginForm } from "@/types/common"
 const router = useRouter()
 const store: any = useCommonStore()
 const formStatus = reactive<LoginForm>({
-  account: '',
-  password: ''
+  account: "",
+  password: "",
 })
 const rules = reactive<LoginForm>({
-  account: '请输入账号',
-  password: '请输入密码'
+  account: "请输入账号",
+  password: "请输入密码",
 })
 
 const verify = (): boolean => {
@@ -47,7 +47,7 @@ const submit = async () => {
   if (verify()) {
     login(formStatus).then((res) => {
       store.setToken(res.data.token!)
-      router.push('./home')
+      router.push("./home")
     })
   }
 }
@@ -71,7 +71,7 @@ input,
 select,
 textarea,
 button {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   letter-spacing: -0.2px;
   font-size: $ruler;
 }
@@ -112,7 +112,9 @@ label {
 
 input {
   margin-right: calc($ruler / 2);
-  box-shadow: inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
+  box-shadow:
+    inset 2px 2px 5px $color-shadow,
+    inset -5px -5px 10px $color-white;
   width: 100%;
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
@@ -120,24 +122,32 @@ input {
   -webkit-appearance: none;
 
   &:focus {
-    box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+    box-shadow:
+      inset 1px 1px 2px $color-shadow,
+      inset -1px -1px 2px $color-white;
   }
 }
 
 button {
   color: #61677c;
   font-weight: bold;
-  box-shadow: -5px -5px 20px $color-white, 5px 5px 20px $color-shadow;
+  box-shadow:
+    -5px -5px 20px $color-white,
+    5px 5px 20px $color-shadow;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   font-weight: 600;
 
   &:hover {
-    box-shadow: -2px -2px 5px $color-white, 2px 2px 5px $color-shadow;
+    box-shadow:
+      -2px -2px 5px $color-white,
+      2px 2px 5px $color-shadow;
   }
 
   &:active {
-    box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+    box-shadow:
+      inset 1px 1px 2px $color-shadow,
+      inset -1px -1px 2px $color-white;
   }
 
   .icon {

@@ -1,4 +1,4 @@
-import { User } from "../system/user";
+import { User } from "../system/user"
 /**
  * 登录表单
  */
@@ -6,11 +6,11 @@ export interface LoginForm {
   /**
    * 账号
    */
-  account?: string;
+  account?: string
   /**
    * 密码
    */
-  password?: string;
+  password?: string
 }
 
 /**
@@ -20,13 +20,12 @@ export interface LoginResult {
   /**
    * token
    */
-  token?: string;
+  token?: string
   /**
    * 用户信息
    */
-  userInfo?: User;
+  userInfo?: User
 }
-
 
 export interface ResetPasswordForm {
   oldPassword?: string

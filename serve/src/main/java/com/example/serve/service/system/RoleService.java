@@ -34,4 +34,6 @@ public interface RoleService extends IService<Role> {
     RoleMenuListVO getRoleMenuList(Long id);
 
     List<RoleVO> getAllList();
+
+    Boolean isAdmin(Long id);
 }

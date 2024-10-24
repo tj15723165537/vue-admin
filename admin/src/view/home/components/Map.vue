@@ -3,10 +3,10 @@
 </template>
 
 <script lang="ts" setup>
-import {nextTick} from 'vue'
+import { nextTick } from "vue"
 
 nextTick(() => {
-  var map = new BMapGL.Map('map')
+  var map = new BMapGL.Map("map")
   map.centerAndZoom(new BMapGL.Point(106.5518, 29.5627), 13)
   map.enableScrollWheelZoom(true)
 })

@@ -5,37 +5,37 @@ export interface RoleVO {
   /**
    * 创建人
    */
-  createBy?: string;
+  createBy?: string
   /**
    * 创建时间
    */
-  createTime?: Date;
+  createTime?: Date
   /**
    * id
    */
-  id?: number;
+  id?: number
   /**
    * 角色名称
    */
-  name?: string;
+  name?: string
   /**
    * 备注
    */
-  remark?: string;
+  remark?: string
 }
 
 export interface RoleSearch extends PageParams {
   /**
    * 角色名
    */
-  name?: string;
+  name?: string
 }
 
 export interface RoleAssignForm {
   /**
    * 角色id
    */
-  id: string,
+  id: string
   /**
    * 菜单集合
    */
@@ -46,7 +46,7 @@ export interface RoleMenuList {
   /**
    * 角色已有权限菜单列表
    */
-  roleMenuList: string[],
+  roleMenuList: string[]
   /**
    * 所有菜单列表
    */

@@ -2,18 +2,18 @@
   <div id="first" v-bind="props"></div>
 </template>
 <script lang="ts" setup>
-import * as echarts from 'echarts'
-import type {EChartsType} from 'echarts'
-import {nextTick, onBeforeUnmount} from 'vue'
+import * as echarts from "echarts"
+import type { EChartsType } from "echarts"
+import { nextTick, onBeforeUnmount } from "vue"
 
 let myChart: EChartsType | null = null
 const props = {
   style: {
-    height: '50%'
-  }
+    height: "50%",
+  },
 }
 nextTick(() => {
-  myChart = echarts.init(document.getElementById('first') as HTMLElement)
+  myChart = echarts.init(document.getElementById("first") as HTMLElement)
   var option
   const data: any[] = []
   for (let i = 0; i <= 360; i++) {
@@ -23,44 +23,44 @@ nextTick(() => {
   }
   option = {
     legend: {
-      data: ['line'],
-      left: '10%'
+      data: ["line"],
+      left: "10%",
     },
     polar: {
-      center: ['50%', '54%']
+      center: ["50%", "54%"],
     },
     tooltip: {
-      trigger: 'axis',
+      trigger: "axis",
       axisPointer: {
-        type: 'cross'
-      }
+        type: "cross",
+      },
     },
     angleAxis: {
-      type: 'value',
-      startAngle: 0
+      type: "value",
+      startAngle: 0,
     },
     radiusAxis: {
-      min: 0
+      min: 0,
     },
     series: [
       {
-        coordinateSystem: 'polar',
-        name: 'line',
-        type: 'line',
+        coordinateSystem: "polar",
+        name: "line",
+        type: "line",
         showSymbol: false,
-        data: data
-      }
+        data: data,
+      },
     ],
-    animationDuration: 2000
+    animationDuration: 2000,
   }
   option && myChart.setOption(option)
-  window.addEventListener('resize', () => {
+  window.addEventListener("resize", () => {
     myChart?.resize()
   })
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', () => {
+  window.removeEventListener("resize", () => {
     myChart?.resize()
   })
 })

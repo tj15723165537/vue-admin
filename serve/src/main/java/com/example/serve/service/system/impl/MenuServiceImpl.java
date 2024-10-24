@@ -8,6 +8,7 @@ import com.example.serve.dto.system.menu.MenuUpdateDTO;
 import com.example.serve.entity.system.Menu;
 import com.example.serve.exception.BusinessException;
 import com.example.serve.mapper.system.MenuMapper;
+import com.example.serve.mapper.system.RoleMapper;
 import com.example.serve.service.system.MenuService;
 import com.example.serve.vo.system.MenuVO;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,8 @@ import java.util.stream.Collectors;
 public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements MenuService {
     @Resource
     private MenuConvert menuConvert;
-
+    @Resource
+    private RoleMapper roleMapper;
 
     public List<MenuVO> getList() {
         List<MenuVO> menuVOS = listWithTree();
@@ -31,11 +33,12 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     @Override
     public void add(MenuCreateDTO menuDTO) {
         Menu parentMenu = getBaseMapper().selectById(menuDTO.getPid());
-        if (Objects.isNull(parentMenu)) {
+        if (Objects.isNull(parentMenu) && menuDTO.getPid() != 0) {
             throw new BusinessException("父级菜单不存在");
         }
         Menu entity = menuConvert.createDto2Entity(menuDTO);
         getBaseMapper().insert(entity);
+//        roleMapper.
     }
 
     @Override

@@ -1,9 +1,9 @@
-import {defineStore} from 'pinia'
+import { defineStore } from "pinia"
 
-export const useCommonStore = defineStore('common', {
+export const useCommonStore = defineStore("common", {
   state: (): { token: string | undefined } => {
     return {
-      token: undefined
+      token: undefined,
     }
   },
   actions: {
@@ -12,7 +12,7 @@ export const useCommonStore = defineStore('common', {
     },
     removeToken() {
       this.token = undefined
-    }
+    },
   },
-  persist: true //开启该库的持久化
+  persist: true, //开启该库的持久化
 })

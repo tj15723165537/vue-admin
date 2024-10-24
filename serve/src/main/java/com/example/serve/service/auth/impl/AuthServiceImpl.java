@@ -16,6 +16,7 @@ import com.example.serve.mapper.system.UserMapper;
 import com.example.serve.mapper.system.UserRoleMapper;
 import com.example.serve.service.auth.AuthService;
 import com.example.serve.service.system.MenuService;
+import com.example.serve.service.system.RoleService;
 import com.example.serve.utils.JwtUtil;
 import com.example.serve.vo.auth.LoginVO;
 import com.example.serve.vo.system.MenuVO;
@@ -42,9 +43,11 @@ public class AuthServiceImpl extends ServiceImpl<LoginMapper, User> implements A
 
     @Resource
     private RoleMapper roleMapper;
+    @Resource
+    private RoleService roleService;
 
     @Resource
-    private UserRoleMapper  userRoleMapper;
+    private UserRoleMapper userRoleMapper;
 
     @Resource
     private UserMapper userMapper;
@@ -82,20 +85,24 @@ public class AuthServiceImpl extends ServiceImpl<LoginMapper, User> implements A
     @Override
     public List<MenuVO> getAuthList(Long id) {
         List<MenuVO> list = menuService.getList();
-        UserRole userRole = userRoleMapper.selectOne(new LambdaQueryWrapper<UserRole>().eq(UserRole::getUserId, id));
-        if(null == userRole) {
-            throw new BusinessException("该用户没有分配角色");
+        if (roleService.isAdmin(id)) {
+            return list;
+        } else {
+            UserRole userRole = userRoleMapper.selectOne(new LambdaQueryWrapper<UserRole>().eq(UserRole::getUserId, id));
+            if (null == userRole) {
+                throw new BusinessException("该用户没有分配角色");
+            }
+            List<RoleMenu> roleMenuList = roleMenuMapper.selectList(new LambdaQueryWrapper<RoleMenu>().eq(RoleMenu::getRoleId, userRole.getRoleId()));
+            List<Long> menuList = roleMenuList.stream().map(item -> item.getMenuId()).collect(Collectors.toList());
+            List<MenuVO> collect = list.stream().filter(item -> menuList.contains(item.getId())).collect(Collectors.toList());
+            return collect;
         }
-        List<RoleMenu> roleMenuList = roleMenuMapper.selectList(new LambdaQueryWrapper<RoleMenu>().eq(RoleMenu::getRoleId, userRole.getRoleId()));
-        List<Long> menuList = roleMenuList.stream().map(item -> item.getMenuId()).collect(Collectors.toList());
-        List<MenuVO> collect = list.stream().filter(item -> menuList.contains(item.getId())).collect(Collectors.toList());
-        return collect;
     }
 
     @Override
     public void resetPassword(ResetPasswordDTO dto, Long currentUserId) {
         User user = userMapper.selectById(currentUserId);
-        if(!BCrypt.checkpw(dto.getOldPassword(), user.getPassword())) {
+        if (!BCrypt.checkpw(dto.getOldPassword(), user.getPassword())) {
             throw new BusinessException("旧密码错误");
         }
         user.setPassword(BCrypt.hashpw(dto.getNewPassword(), BCrypt.gensalt()));

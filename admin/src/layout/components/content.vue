@@ -7,14 +7,14 @@
     </el-breadcrumb>
   </div>
   <div class="content">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script lang="ts" setup>
-import {ArrowRight} from '@element-plus/icons-vue'
-import {useRoute, RouteLocationNormalizedLoaded, RouteLocationMatched} from 'vue-router'
-import {watch, ref, onMounted} from 'vue'
+import { ArrowRight } from "@element-plus/icons-vue"
+import { useRoute, RouteLocationNormalizedLoaded, RouteLocationMatched } from "vue-router"
+import { watch, ref, onMounted } from "vue"
 
 const route = useRoute()
 type breadcrumbList = {
@@ -35,7 +35,7 @@ function getbreadcrumbList(val: RouteLocationNormalizedLoaded) {
   const list: breadcrumbList = val.matched.map((item: RouteLocationMatched) => {
     return {
       name: item.meta.title as string,
-      path: item.path
+      path: item.path,
     }
   })
   breadcrumbList.value = list

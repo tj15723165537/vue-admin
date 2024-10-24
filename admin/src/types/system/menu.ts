@@ -5,35 +5,35 @@ export interface Menu {
   /**
    * 子菜单
    */
-  children?: Menu[];
+  children?: Menu[]
   /**
    * 菜单图标
    */
-  icon?: string;
+  icon?: string
   /**
    * 菜单id
    */
-  id?: string;
+  id?: string
   /**
    * 菜单名称
    */
-  name?: string;
+  name?: string
   /**
    * 菜单路径
    */
-  path?: string;
+  path?: string
   /**
    * 父菜单id
    */
-  pid?: string;
+  pid?: string
   /**
    * 跳转路径
    */
-  redirect?: string;
+  redirect?: string
   /**
    * 菜单标题
    */
-  title?: string;
+  title?: string
 }
 
 /**
@@ -43,29 +43,29 @@ export interface MenuForm {
   /**
    * 菜单图标
    */
-  icon?: string;
+  icon?: string
   /**
    * 菜单id
    */
-  id?: string;
+  id?: string
   /**
    * 路由名称
    */
-  name?: string;
+  name?: string
   /**
    * 菜单路径
    */
-  path?: string;
+  path?: string
   /**
    * 父级菜单
    */
-  pid?: string;
+  pid?: string
   /**
    * 重定向路径
    */
-  redirect?: string;
+  redirect?: string
   /**
    * 菜单标题
    */
-  title?: string;
+  title?: string
 }

@@ -1,59 +1,59 @@
-import request from '@/utils/request'
-import {User} from '@/types/system/user'
-import { RoleMenuList, RoleSearch, RoleVO } from '@/types/system/role'
+import request from "@/utils/request"
+import { User } from "@/types/system/user"
+import { RoleMenuList, RoleSearch, RoleVO } from "@/types/system/role"
 
 export const getRoleList = (data: RoleSearch) => {
   return request<ResultData<RoleVO>>({
-    url: '/api/role/list',
+    url: "/api/role/list",
     data,
-    hideLoading: true
+    hideLoading: true,
   })
 }
 
 export const addRole = (data: User) => {
   return request({
-    url: '/api/role/add',
-    method: 'post',
-    data
+    url: "/api/role/add",
+    method: "post",
+    data,
   })
 }
 
 export const editRole = (data: RoleVO) => {
   return request({
-    url: '/api/role/update',
-    method: 'post',
-    data
+    url: "/api/role/update",
+    method: "post",
+    data,
   })
 }
 
 export const getRoleDetail = (id: number) => {
   return request<RoleVO>({
-    url: `/api/role/detail/${id}`
+    url: `/api/role/detail/${id}`,
   })
 }
 
 export const delRole = (id: string) => {
   return request({
-    url: `/api/role/delete/${id}`
+    url: `/api/role/delete/${id}`,
   })
 }
 
 export const assignRole = (data: { menuList: string[] }) => {
   return request({
     url: `/api/role/assign`,
-    method: 'post',
-    data
+    method: "post",
+    data,
   })
 }
 
 export const getRoleMenuList = (id: string) => {
   return request<RoleMenuList>({
-    url: `/api/role/roleMenuList/${id}`
+    url: `/api/role/roleMenuList/${id}`,
   })
 }
 
 export const getAllRoleList = () => {
   return request<RoleVO[]>({
-    url: `/api/role/allList`
+    url: `/api/role/allList`,
   })
 }

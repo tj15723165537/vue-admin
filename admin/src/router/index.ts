@@ -1,42 +1,42 @@
-import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
-import {useCommonStore} from '@/store/modules/common'
-import {useMenuStore} from '@/store/modules/menu'
-import {Menu} from '@/types/system/menu'
+import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router"
+import { useCommonStore } from "@/store/modules/common"
+import { useMenuStore } from "@/store/modules/menu"
+import { Menu } from "@/types/system/menu"
 
 const contactRoutes: RouteRecordRaw[] = [
   {
-    path: '/login',
-    component: () => import('@/view/login/index.vue')
+    path: "/login",
+    component: () => import("@/view/login/index.vue"),
   },
   {
-    path: '/home',
-    redirect: '/home',
-    component: () => import('@/layout/index.vue'),
+    path: "/home",
+    redirect: "/home",
+    component: () => import("@/layout/index.vue"),
     children: [
       {
-        path: '',
+        path: "",
         meta: {
-          title: '首页',
-          icon: 'home'
+          title: "首页",
+          icon: "home",
         },
-        component: () => import('@/view/home/index.vue')
-      }
-    ]
+        component: () => import("@/view/home/index.vue"),
+      },
+    ],
   },
   {
-    path: '/',
-    redirect: '/login'
-  }
+    path: "/",
+    redirect: "/login",
+  },
 ]
 export const router = createRouter({
   history: createWebHistory(),
-  routes: contactRoutes
+  routes: contactRoutes,
 })
 
 router.beforeEach(async (to, form, next) => {
   const store = useCommonStore()
   const menuStore = useMenuStore()
-  const whiteList = ['/login']
+  const whiteList = ["/login"]
   if (store.token) {
     if (!menuStore.asyncRoutestMark) {
       await menuStore.setMenuList()
@@ -44,7 +44,7 @@ router.beforeEach(async (to, form, next) => {
         router.addRoute(createRoutes(item))
       })
       menuStore.setAsyncRoutestMark(true)
-      next({...to, replace: true})
+      next({ ...to, replace: true })
     } else {
       next()
     }
@@ -59,28 +59,28 @@ router.beforeEach(async (to, form, next) => {
 })
 
 // 首先把你需要动态路由的组件地址全部获取
-let modules = import.meta.glob('../view/**/*.vue')
+let modules = import.meta.glob("../view/**/*.vue")
 function createRoutes(item: Menu) {
   const routes: RouteRecordRaw = {
     path: item.path!,
     redirect: item.redirect,
-    component: () => import('@/layout/index.vue'),
+    component: () => import("@/layout/index.vue"),
     meta: {
       title: item.title,
-      icon: item.icon
+      icon: item.icon,
     },
-    children: []
+    children: [],
   }
   if (item.children?.length! > 0) {
     item.children!.map((child) => {
-      const childRoutes:RouteRecordRaw = {
+      const childRoutes: RouteRecordRaw = {
         path: child.path!,
         // component: () => import(`../view${child.path}/index.vue`),
         component: modules[`../view${child.path}/index.vue`],
         meta: {
           title: child.title,
-          icon: child.icon
-        }
+          icon: child.icon,
+        },
       }
       routes.children!.push(childRoutes)
     })

@@ -5,27 +5,27 @@ export interface User {
   /**
    * 账号
    */
-  account?: string;
+  account?: string
   /**
    * 创建时间
    */
-  createTime?: Date;
+  createTime?: Date
   /**
    * 用户id
    */
-  id?: number;
+  id?: number
   /**
    * 密码
    */
-  password?: string;
+  password?: string
   /**
    * 状态
    */
-  status?: 0 | 1 | boolean;
+  status?: 0 | 1 | boolean
   /**
    * 更新时间
    */
-  updateTime?: Date;
+  updateTime?: Date
 }
 
 /**

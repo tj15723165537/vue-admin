@@ -5,31 +5,31 @@ export interface Employee {
   /**
    * 地址
    */
-  address?: string;
+  address?: string
   /**
    * 创建时间
    */
-  createTime?: Date;
+  createTime?: Date
   /**
    * 入职日期
    */
-  date?: Date;
+  date?: Date
   /**
    * 员工id
    */
-  id?: string;
+  id?: string
   /**
    * 员工姓名
    */
-  name?: string;
+  name?: string
   /**
    * 电话
    */
-  phone?: string;
+  phone?: string
   /**
    * 更新时间
    */
-  updateTime?: Date;
+  updateTime?: Date
 }
 
 /**
@@ -39,15 +39,15 @@ export interface EmployeeSearch extends PageParams {
   /**
    * 地址
    */
-  address?: string;
+  address?: string
   /**
    * 员工姓名
    */
-  name?: string;
+  name?: string
   /**
    * 电话
    */
-  phone?: string;
+  phone?: string
 }
 
 /**
@@ -57,21 +57,21 @@ export interface EmployeeForm {
   /**
    * 地址
    */
-  address?: string;
+  address?: string
   /**
    * 入职日期
    */
-  date?: Date;
+  date?: Date
   /**
    * 员工id
    */
-  id?: string;
+  id?: string
   /**
    * 员工姓名
    */
-  name?: string;
+  name?: string
   /**
    * 电话
    */
-  phone?: string;
+  phone?: string
 }

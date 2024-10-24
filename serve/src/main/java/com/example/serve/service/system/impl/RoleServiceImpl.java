@@ -140,7 +140,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         return roleConvert.entityList2VoList(roleList);
     }
 
-    private Boolean isAdmin(Long id){
+    public Boolean isAdmin(Long id){
         Role role = roleMapper.selectById(id);
         return role.getIsAdmin().equals(WhetherEnum.YES.code());
     }

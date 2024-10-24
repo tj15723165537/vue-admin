@@ -1,7 +1,7 @@
-import {defineStore} from 'pinia'
-import {getMenuList} from '@/api/system/menu'
-import {Menu} from '@/types/system/menu'
-import { getAuthList } from '@/api/common'
+import { defineStore } from "pinia"
+import { getMenuList } from "@/api/system/menu"
+import { Menu } from "@/types/system/menu"
+import { getAuthList } from "@/api/common"
 
 interface State {
   menuList: Menu[]
@@ -10,13 +10,13 @@ interface State {
   isCollapse: boolean
 }
 
-export const useMenuStore = defineStore('menu', {
+export const useMenuStore = defineStore("menu", {
   state: (): State => {
     return {
       menuList: [],
       asyncRoutestMark: false,
       hasSetMenuList: false,
-      isCollapse: false
+      isCollapse: false,
     }
   },
   actions: {
@@ -29,6 +29,6 @@ export const useMenuStore = defineStore('menu', {
     },
     setIsCollapse() {
       this.isCollapse = !this.isCollapse
-    }
-  }
+    },
+  },
 })
